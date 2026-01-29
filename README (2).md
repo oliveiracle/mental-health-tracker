@@ -85,7 +85,7 @@ python manage.py runserver
 
 This project follows Agile development practices. User stories and project planning are managed using GitHub Projects.
 
-[Link to GitHub Project Board - To be added]
+[View Project Board](https://github.com/users/oliveiracle/projects/1)
 
 ## Testing
 
