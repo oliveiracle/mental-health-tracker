@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class MoodEntry(models.Model):
     """
     Model to store user's daily mood entries
@@ -19,7 +20,7 @@ class MoodEntry(models.Model):
     ]
     
     user = models.ForeignKey(
-        User, 
+        User,
         on_delete=models.CASCADE,
         related_name='mood_entries'
     )
