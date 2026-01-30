@@ -1,3 +1,6 @@
-from django.shortcuts import render  # noqa: F401
+from django.shortcuts import render
 
-# Create your views here.
+
+def home(request):
+    """Display the homepage"""
+    return render(request, 'tracker/home.html')
