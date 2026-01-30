@@ -1,83 +1,568 @@
-/* Custom Styles for Mental Health Tracker */
+/* Mental Health Tracker - Modern Professional Design */
 
 :root {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --success-color: #198754;
-    --danger-color: #dc3545;
-    --warning-color: #ffc107;
-    --info-color: #0dcaf0;
+    /* Modern Color Palette */
+    --primary: #6366F1;              /* Vibrant Indigo */
+    --primary-dark: #4F46E5;         /* Deep Indigo */
+    --primary-light: #818CF8;        /* Light Indigo */
+    --secondary: #10B981;            /* Emerald Green */
+    --accent: #F59E0B;               /* Amber */
+    --danger: #EF4444;               /* Red */
+    
+    /* Neutrals */
+    --bg-primary: #F9FAFB;           /* Light Gray */
+    --bg-secondary: #FFFFFF;         /* White */
+    --bg-dark: #1F2937;              /* Dark Gray */
+    --text-primary: #111827;         /* Almost Black */
+    --text-secondary: #6B7280;       /* Medium Gray */
+    
+    /* Mood Colors - Vibrant but Balanced */
+    --mood-1: #EF4444;               /* Red */
+    --mood-2: #F97316;               /* Orange */
+    --mood-3: #F59E0B;               /* Amber */
+    --mood-4: #EAB308;               /* Yellow */
+    --mood-5: #84CC16;               /* Lime */
+    --mood-6: #22C55E;               /* Green */
+    --mood-7: #10B981;               /* Emerald */
+    --mood-8: #14B8A6;               /* Teal */
+    --mood-9: #06B6D4;               /* Cyan */
+    --mood-10: #0EA5E9;              /* Sky Blue */
+    
+    /* Effects */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Accessibility Enhancements */
+*:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Skip to main content link for screen readers */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* Ensure sufficient color contrast */
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(135deg, #F9FAFB 0%, #E5E7EB 100%);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.6;
 }
 
 main {
     flex: 1;
 }
 
-.navbar-brand {
-    font-weight: bold;
-    font-size: 1.3rem;
+/* Navigation - Glassmorphism Effect */
+.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1.2rem 0;
 }
 
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand i {
+    font-size: 1.8rem;
+    margin-right: 0.8rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Welcome Section */
+.display-4 {
+    font-weight: 800;
+    font-size: 3.5rem;
+    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.display-4 i {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.lead {
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+/* Cards - Modern with Gradient Borders */
 .card {
+    background: var(--bg-secondary);
     border: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    border-radius: 24px;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--shadow-md);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: var(--shadow-xl);
 }
 
-.mood-score {
-    font-size: 2rem;
-    font-weight: bold;
+.card-body {
+    background: var(--bg-secondary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    position: relative;
+    z-index: 1;
 }
 
-.mood-score-1, .mood-score-2 { color: #dc3545; }
-.mood-score-3, .mood-score-4 { color: #fd7e14; }
-.mood-score-5, .mood-score-6 { color: #ffc107; }
-.mood-score-7, .mood-score-8 { color: #20c997; }
-.mood-score-9, .mood-score-10 { color: #198754; }
+.card-title {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
 
+.card-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Icons - Gradient Colors */
+.fa-3x {
+    font-size: 3.5rem !important;
+}
+
+.text-primary .fa-chart-line {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-success .fa-book {
+    background: linear-gradient(135deg, var(--secondary), #34D399);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-info .fa-shield-alt {
+    background: linear-gradient(135deg, #06B6D4, #0EA5E9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Buttons - Modern with Gradients */
 .btn {
-    border-radius: 25px;
-    padding: 0.5rem 1.5rem;
-}
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
-}
-
-footer {
-    margin-top: auto;
-}
-
-.sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
+    border-radius: 16px;
+    padding: 0.9rem 2.5rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+    position: relative;
     overflow: hidden;
-    clip: rect(0,0,0,0);
-    white-space: nowrap;
-    border-width: 0;
 }
 
-@media (max-width: 768px) {
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4);
+}
+
+.btn-outline-secondary {
+    border: 2px solid var(--secondary);
+    color: var(--secondary);
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-lg {
+    padding: 1.1rem 3rem;
+    font-size: 1.1rem;
+}
+
+/* Mood Score Colors - Vibrant Gradients */
+.mood-score {
+    font-size: 3rem;
+    font-weight: 800;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mood-score-1 { background: linear-gradient(135deg, var(--mood-1), #DC2626); }
+.mood-score-2 { background: linear-gradient(135deg, var(--mood-2), #EA580C); }
+.mood-score-3 { background: linear-gradient(135deg, var(--mood-3), #D97706); }
+.mood-score-4 { background: linear-gradient(135deg, var(--mood-4), #CA8A04); }
+.mood-score-5 { background: linear-gradient(135deg, var(--mood-5), #65A30D); }
+.mood-score-6 { background: linear-gradient(135deg, var(--mood-6), #16A34A); }
+.mood-score-7 { background: linear-gradient(135deg, var(--mood-7), #059669); }
+.mood-score-8 { background: linear-gradient(135deg, var(--mood-8), #0D9488); }
+.mood-score-9 { background: linear-gradient(135deg, var(--mood-9), #0891B2); }
+.mood-score-10 { background: linear-gradient(135deg, var(--mood-10), #0284C7); }
+
+/* Footer - Modern Dark */
+footer {
+    background: linear-gradient(135deg, var(--bg-dark), #374151);
+    margin-top: auto;
+    padding: 2rem 0;
+    box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    color: #D1D5DB;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card {
+    animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-fill-mode: both;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+
+/* Responsive Design - Mobile First Approach */
+
+/* Large Tablets and Small Desktops (992px and up) */
+@media (max-width: 991.98px) {
+    .display-4 {
+        font-size: 3rem;
+        letter-spacing: -0.5px;
+    }
+    
+    .lead {
+        font-size: 1.15rem;
+    }
+    
+    .card-body {
+        padding: 2.2rem;
+    }
+}
+
+/* Tablets Portrait (768px and down) */
+@media (max-width: 767.98px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+    
+    .navbar-brand i {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .card-body {
+        padding: 2rem;
+    }
+    
+    .btn {
+        padding: 0.8rem 2rem;
+        font-size: 0.95rem;
+    }
+    
+    .btn-lg {
+        padding: 0.9rem 2.2rem;
+        font-size: 1rem;
+    }
+    
+    .fa-3x {
+        font-size: 2.8rem !important;
+    }
+    
+    .mood-score {
+        font-size: 2.5rem;
+    }
+    
+    /* Disable hover effects on touch devices */
+    .card:hover {
+        transform: none;
+    }
+}
+
+/* Mobile Devices (576px and down) */
+@media (max-width: 575.98px) {
+    .display-4 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+    
+    .lead {
+        font-size: 1rem;
+    }
+    
+    .navbar {
+        padding: 1rem 0;
+    }
+    
     .navbar-brand {
         font-size: 1.1rem;
     }
     
+    .navbar-brand i {
+        font-size: 1.3rem;
+    }
+    
+    .card {
+        border-radius: 16px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .card::before {
+        border-radius: 16px;
+    }
+    
+    .card-body {
+        border-radius: 14px;
+        padding: 1.5rem;
+    }
+    
+    .card-title {
+        font-size: 1.25rem;
+    }
+    
+    .card-text {
+        font-size: 0.95rem;
+    }
+    
+    .fa-3x {
+        font-size: 2.5rem !important;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+        border-radius: 12px;
+    }
+    
+    .btn-lg {
+        padding: 0.85rem 2rem;
+        font-size: 0.95rem;
+    }
+    
     .mood-score {
+        font-size: 2rem;
+    }
+    
+    footer {
+        padding: 1.5rem 0;
+    }
+    
+    footer p {
+        font-size: 0.85rem;
+    }
+    
+    /* Remove animations on mobile for better performance */
+    .card {
+        animation: none;
+    }
+    
+    .card:hover {
+        transform: none;
+        box-shadow: var(--shadow-md);
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+}
+
+/* Extra Small Devices (400px and down) */
+@media (max-width: 399.98px) {
+    .display-4 {
+        font-size: 1.75rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1rem;
+    }
+    
+    .card-body {
+        padding: 1.25rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.85rem;
+    }
+    
+    .fa-3x {
+        font-size: 2rem !important;
+    }
+}
+
+/* Landscape mode on small devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .display-4 {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .lead {
+        font-size: 0.9rem;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    footer {
+        padding: 1rem 0;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Optimize for retina displays */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    footer,
+    .btn {
+        display: none;
+    }
+    
+    body {
+        background: white;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        page-break-inside: avoid;
     }
 }
