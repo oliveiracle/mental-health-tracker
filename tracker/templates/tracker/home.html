@@ -1,0 +1,46 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Home - Mental Health Tracker{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto text-center">
+        <h1 class="display-4 mb-4">
+            <i class="fas fa-brain text-primary"></i> Welcome to Mental Health Tracker
+        </h1>
+        <p class="lead mb-4">
+            Track your mood, monitor your mental wellbeing, and gain insights into your emotional patterns.
+        </p>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                <h3 class="card-title">Track Your Progress</h3>
+                <p class="card-text">Monitor your mood patterns over time.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-book fa-3x text-success mb-3"></i>
+                <h3 class="card-title">Daily Journaling</h3>
+                <p class="card-text">Add notes to understand what affects your wellbeing.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card text-center h-100">
+            <div class="card-body">
+                <i class="fas fa-shield-alt fa-3x text-info mb-3"></i>
+                <h3 class="card-title">Private & Secure</h3>
+                <p class="card-text">Your data is private and only accessible to you.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
