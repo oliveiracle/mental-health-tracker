@@ -20,4 +20,9 @@ def register(request):
             return redirect('home')
     else:
         form = UserCreationForm()
+    
+    # Add Bootstrap classes to form fields
+    for field in form.fields.values():
+        field.widget.attrs['class'] = 'form-control'
+    
     return render(request, 'tracker/register.html', {'form': form})
