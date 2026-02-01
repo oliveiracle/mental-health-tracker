@@ -1,93 +1,94 @@
+<!-- this page is for register new users -->
 {% extends 'tracker/base.html' %}
-
 {% block title %}Register - Mental Health Tracker{% endblock %}
 
 {% block content %}
+<!-- center the form in the page -->
 <div class="row justify-content-center mt-5">
-    <div class="col-lg-6 col-md-8">
-        <div class="card">
-            <div class="card-body p-5">
-                <h1 class="display-6 text-center mb-4">
-                    <i class="fas fa-user-plus"></i> Create Account
-                </h1>
+  <div class="col-lg-6 col-md-8">
+    <!-- card for the registration form -->
+    <div class="card">
+      <div class="card-body p-5">
+        <!-- page title with icon -->
+        <h1 class="display-6 text-center mb-4">
+          <i class="fas fa-user-plus"></i> Create Account
+        </h1>
                 
-                <p class="text-center text-muted mb-4">
-                    Start tracking your mental wellbeing today
-                </p>
+        <!-- subtitle text -->
+        <p class="text-center text-muted mb-4">
+          Start tracking your mental wellbeing today
+        </p>
                 
-                {% if form.errors %}
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i> Please correct the errors below.
-                    </div>
-                {% endif %}
-                
-                <form method="post">
-                    {% csrf_token %}
-                    
-                    <div class="mb-3">
-                        <label for="{{ form.username.id_for_label }}" class="form-label fw-bold">
-                            Username
-                        </label>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.username.errors }}
-                            </div>
-                        {% endif %}
-                        <div class="form-text">
-                            150 characters or fewer. Letters, digits and @/./+/-/_ only.
-                        </div>
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">
-                            Email (optional)
-                        </label>
-                        {{ form.email }}
-                        {% if form.email.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.email.errors }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="mb-3">
-                        <label for="{{ form.password1.id_for_label }}" class="form-label fw-bold">
-                            Password
-                        </label>
-                        {{ form.password1 }}
-                        {% if form.password1.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.password1.errors }}
-                            </div>
-                        {% endif %}
-                        <div class="form-text">
-                            Your password must contain at least 8 characters and can't be entirely numeric.
-                        </div>
-                    </div>
-                    
-                    <div class="mb-4">
-                        <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">
-                            Confirm Password
-                        </label>
-                        {{ form.password2 }}
-                        {% if form.password2.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.password2.errors }}
-                            </div>
-                        {% endif %}
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">
-                        <i class="fas fa-user-plus"></i> Create Account
-                    </button>
-                </form>
-                
-                <div class="text-center mt-4">
-                    <p class="text-muted mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a></p>
-                </div>
-            </div>
+        <!-- show error message if form have errors -->
+        {% if form.errors %}
+        <div class="alert alert-danger">
+          <i class="fas fa-exclamation-circle"></i> Please correct the errors below.
         </div>
+        {% endif %}
+                
+        <!-- registration form start here -->
+        <form method="post">
+          {% csrf_token %}  <!-- security token required by django -->
+                    
+          <!-- username field -->
+          <div class="mb-3">
+            <label for="{{ form.username.id_for_label }}" class="form-label fw-bold">Username</label>
+            {{ form.username }}  <!-- django will render the input field here -->
+            {% if form.username.errors %}
+            <div class="text-danger mt-1">
+              {{ form.username.errors }}  <!-- show error if username is wrong -->
+            </div>
+            {% endif %}
+            <div class="form-text">
+              150 characters or fewer. Letters, digits and @/./+/-/_ only.
+            </div>
+          </div>
+                    
+          <!-- email field (not required) -->
+          <div class="mb-3">
+              <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">Email (optional)</label>
+              {{ form.email }}
+              {% if form.email.errors %}
+              <div class="text-danger mt-1">
+                {{ form.email.errors }}
+              </div>
+              {% endif %}
+          </div>
+                    
+          <!-- password field -->
+          <div class="mb-3">
+              <label for="{{ form.password1.id_for_label }}" class="form-label fw-bold">Password</label>
+              {{ form.password1 }}
+              {% if form.password1.errors %}
+                <div class="text-danger mt-1">
+                  {{ form.password1.errors }}
+                </div>
+              {% endif %}
+              <!-- password rules -->
+              <div class="form-text">Your password must contain at least 8 characters and can't be entirely numeric.</div>
+          </div>
+                    
+          <!-- confirm password (need to match first password) -->
+          <div class="mb-4">
+            <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">Confirm Password</label>
+            {{ form.password2 }}
+            {% if form.password2.errors %}
+              <div class="text-danger mt-1">
+                {{ form.password2.errors }}
+              </div>
+            {% endif %}
+          </div>
+                    
+          <!-- submit button -->
+          <button type="submit" class="btn btn-primary btn-lg w-100 mb-3"><i class="fas fa-user-plus"></i> Create Account</button>
+        </form>
+                
+        <!-- link to login page if user already have account -->
+        <div class="text-center mt-4">
+          <p class="text-muted mb-0">Already have an account? <a href="{% url 'login' %}" class="text-decoration-none">Login here</a></p>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

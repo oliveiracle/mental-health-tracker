@@ -1,8 +1,11 @@
+# main URL configuration for entire project
 from django.contrib import admin
 from django.urls import path, include
 
+# url patterns for whole site
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),  # admin panel url
+    # built-in auth urls (login, etc)
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('tracker.urls')),
+    path('', include('tracker.urls')),  # include tracker app urls
 ]

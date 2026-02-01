@@ -1,11 +1,11 @@
+# models for database tables
 from django.db import models
 from django.contrib.auth.models import User
 
 
+# model for storing mood entries
 class MoodEntry(models.Model):
-    """
-    Model to store user's daily mood entries
-    """
+    # choices for mood score (1 to 10)
     MOOD_CHOICES = [
         (1, 'Very Low'),
         (2, 'Low'),
@@ -19,20 +19,25 @@ class MoodEntry(models.Model):
         (10, 'Excellent'),
     ]
     
+    # link to user (each entry belongs to a user)
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE,  # delete entries if user deleted
         related_name='mood_entries'
     )
+    # automatically set date when created
     date = models.DateField(auto_now_add=True)
-    mood_score = models.IntegerField(choices=MOOD_CHOICES)
-    notes = models.TextField(blank=True, null=True)
+    mood_score = models.IntegerField(choices=MOOD_CHOICES)  # mood 1-10
+    notes = models.TextField(blank=True, null=True)  # optional notes
+    # when entry was created
     created_at = models.DateTimeField(auto_now_add=True)
+    # when entry was last updated
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        ordering = ['-date']
-        verbose_name_plural = 'Mood Entries'
+        ordering = ['-date']  # show newest entries first
+        verbose_name_plural = 'Mood Entries'  # proper plural name
     
+    # string representation for admin panel
     def __str__(self):
         return f"{self.user.username} - {self.date} - Score: {self.mood_score}"
