@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from .forms import RegisterForm
+from django.contrib.auth import login, logout
 from django.contrib import messages
 
 
@@ -12,17 +12,27 @@ def home(request):
 def register(request):
     """User registration view"""
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request, f'Welcome {user.username}! Your account has been created.')
+            messages.success(
+                request,
+                f"Welcome {user.username}! Your account has been created.",
+            )
             return redirect('home')
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     
     # Add Bootstrap classes to form fields
     for field in form.fields.values():
         field.widget.attrs['class'] = 'form-control'
     
     return render(request, 'tracker/register.html', {'form': form})
+
+
+def logout_view(request):
+    """User logout view"""
+    logout(request)
+    messages.success(request, 'You have been logged out successfully.')
+    return redirect('home')
