@@ -1,8 +1,10 @@
 # importing necessary modules for views
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import RegisterForm
+from .models import MoodEntry
 
 
 # home page view
@@ -41,3 +43,11 @@ def logout_view(request):
     # show message
     messages.success(request, 'You have been logged out successfully.')
     return redirect('home')  # return to home page
+
+
+# show all mood entries for the user
+@login_required
+def mood_list(request):
+    # get entries only for this user
+    moods = MoodEntry.objects.filter(user=request.user)
+    return render(request, 'tracker/mood_list.html', {'moods': moods})
