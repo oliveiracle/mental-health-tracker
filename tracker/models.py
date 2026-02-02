@@ -20,15 +20,18 @@ class MoodEntry(models.Model):
     ]
     
     # link to user (each entry belongs to a user)
+    # delete entries if user deleted
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,  # delete entries if user deleted
+        on_delete=models.CASCADE,
         related_name='mood_entries'
     )
     # automatically set date when created
     date = models.DateField(auto_now_add=True)
-    mood_score = models.IntegerField(choices=MOOD_CHOICES)  # mood 1-10
-    notes = models.TextField(blank=True, null=True)  # optional notes
+    # mood score 1-10
+    mood_score = models.IntegerField(choices=MOOD_CHOICES)
+    # optional notes
+    notes = models.TextField(blank=True, null=True)
     # when entry was created
     created_at = models.DateTimeField(auto_now_add=True)
     # when entry was last updated
@@ -40,4 +43,6 @@ class MoodEntry(models.Model):
     
     # string representation for admin panel
     def __str__(self):
-        return f"{self.user.username} - {self.date} - Score: {self.mood_score}"
+        return (
+            f"{self.user.username} - {self.date} - Score: {self.mood_score}"
+        )
