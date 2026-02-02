@@ -1,0 +1,47 @@
+<!-- page to show all mood entries -->
+{% extends 'tracker/base.html' %}
+
+{% block title %}My Mood Entries - Mental Health Tracker{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="glass-card">
+      <h2 class="mb-4">
+        <i class="fas fa-heart"></i> My Mood Entries
+      </h2>
+      
+      <!-- show all mood entries -->
+      {% if moods %}
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Mood Score</th>
+                <th>Mood</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for mood in moods %}
+                <tr>
+                  <td>{{ mood.date }}</td>
+                  <td>{{ mood.mood_score }}/10</td>
+                  <td>{{ mood.get_mood_score_display }}</td>
+                  <td>{{ mood.notes|default:"No notes" }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <!-- if no entries yet -->
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle"></i> You haven't logged any mood entries yet.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
