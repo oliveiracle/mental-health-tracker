@@ -12,25 +12,31 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
+# base directory of project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# secret key for security (keep this secret in production)
 SECRET_KEY = 'django-insecure-jh+!hof+d#b$s7&vr*0+dwsrmwk1$3%(q^d05zg' \
              '(2%7-lngh9g'
 
+# debug mode (turn off in production)
 DEBUG = True
 
+# allowed hosts for the website
 ALLOWED_HOSTS = ['*']
 
+# apps installed in this project
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'tracker',
+    'django.contrib.admin',  # admin panel
+    'django.contrib.auth',  # user authentication
+    'django.contrib.contenttypes',  # content types framework
+    'django.contrib.sessions',  # session framework
+    'django.contrib.messages',  # messaging framework
+    'django.contrib.staticfiles',  # static files management
+    'tracker',  # my mood tracker app
 ]
 
+# middleware for security and functionality
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -41,13 +47,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# main url configuration file
 ROOT_URLCONF = 'config.urls'
 
+# template settings
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [],  # directories for templates
+        'APP_DIRS': True,  # look for templates in app directories
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
@@ -58,15 +66,18 @@ TEMPLATES = [
     },
 ]
 
+# wsgi application for deployment
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# database configuration (using sqlite)
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',  # database type
+        'NAME': BASE_DIR / 'db.sqlite3',  # database file location
     }
 }
 
+# password validation rules
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.'
              'UserAttributeSimilarityValidator'},
@@ -78,16 +89,22 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# language for the site
 LANGUAGE_CODE = 'en-us'
 
+# timezone
 TIME_ZONE = 'UTC'
 
+# enable internationalization
 USE_I18N = True
 
+# enable timezone support
 USE_TZ = True
 
-
+# url for static files (css, js, images)
 STATIC_URL = 'static/'
 
+# redirect to home page after login
 LOGIN_REDIRECT_URL = 'home'
+# redirect to home page after logout
 LOGOUT_REDIRECT_URL = 'home'
