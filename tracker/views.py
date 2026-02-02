@@ -1,54 +1,61 @@
-# importing necessary modules for views
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import RegisterForm
+from .forms import RegisterForm, MoodEntryForm
 from .models import MoodEntry
 
 
-# home page view
 def home(request):
-    # just render the home template
     return render(request, 'tracker/home.html')
 
 
-# register new user view
 def register(request):
-    if request.method == 'POST':  # if form is submitted
-        # get form data
+    if request.method == 'POST':
         form = RegisterForm(request.POST)
-        if form.is_valid():  # check if form is valid
-            user = form.save()  # save new user to database
-            login(request, user)  # automatically log in the new user
-            # show success message
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
             messages.success(
-                request,
-                f"Welcome {user.username}! Your account has been created.",
+                request, f"Welcome {user.username}! Account created."
             )
-            return redirect('home')  # go to home page
-    else:  # if GET request (just loading the page)
-        form = RegisterForm()  # create empty form
-    
-    # add bootstrap classes to make form look nice
+            return redirect('home')
+    else:
+        form = RegisterForm()
+
+    # bootstrap styling
     for field in form.fields.values():
         field.widget.attrs['class'] = 'form-control'
-    
-    # render register template with form
+
     return render(request, 'tracker/register.html', {'form': form})
 
 
-# logout view
 def logout_view(request):
-    logout(request)  # logout user
-    # show message
-    messages.success(request, 'You have been logged out successfully.')
-    return redirect('home')  # return to home page
+    logout(request)
+    messages.success(request, 'You have been logged out.')
+    return redirect('home')
 
 
-# show all mood entries for the user
 @login_required
 def mood_list(request):
-    # get entries only for this user
     moods = MoodEntry.objects.filter(user=request.user)
     return render(request, 'tracker/mood_list.html', {'moods': moods})
+
+
+@login_required
+def mood_create(request):
+    if request.method == 'POST':
+        form = MoodEntryForm(request.POST)
+        if form.is_valid():
+            mood = form.save(commit=False)
+            mood.user = request.user
+            mood.save()
+            messages.success(request, 'Mood entry added!')
+            return redirect('mood_list')
+    else:
+        form = MoodEntryForm()
+    
+    for field in form.fields.values():
+        field.widget.attrs['class'] = 'form-control'
+    
+    return render(request, 'tracker/mood_form.html', {'form': form})
