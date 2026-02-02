@@ -1,45 +1,50 @@
 /* my css file for mental health tracker */
 
-/* basic styles */
+/* basic styles for all elements */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;  /* remove default margin */
+    padding: 0;  /* remove default padding */
+    box-sizing: border-box;  /* include padding in element size */
 }
 
+/* body styles */
 body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: #f5f5f5;
-    color: #333;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;  /* minimum height is full screen */
+    display: flex;  /* use flexbox layout */
+    flex-direction: column;  /* stack elements vertically */
+    background: #f5f5f5;  /* light gray background */
+    color: #333;  /* dark text color */
+    font-family: Arial, sans-serif;  /* default font */
 }
 
+/* main content area */
 main {
-    flex: 1;
+    flex: 1;  /* take remaining space */
 }
 
 /* navbar styles */
 .navbar {
-    background: white !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 1rem 0;
+    background: white !important;  /* white background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* subtle shadow */
+    padding: 1rem 0;  /* top and bottom padding */
 }
 
+/* navbar brand (logo and name) */
 .navbar-brand {
-    font-weight: bold;
-    font-size: 1.3rem;
-    color: #4169e1;
+    font-weight: bold;  /* make text bold */
+    font-size: 1.3rem;  /* bigger font size */
+    color: #4169e1;  /* blue color */
 }
 
+/* navbar brand on hover */
 .navbar-brand:hover {
-    color: #2a52c7;
+    color: #2a52c7;  /* darker blue on hover */
 }
 
+/* icon in navbar brand */
 .navbar-brand i {
-    color: #4169e1;
-    margin-right: 8px;
+    color: #4169e1;  /* blue icon */
+    margin-right: 8px;  /* space after icon */
 }
 
 /* headings */
@@ -61,30 +66,34 @@ main {
 
 /* cards */
 .card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.2s;
+    background: white;  /* white background */
+    border: 1px solid #ddd;  /* light gray border */
+    border-radius: 8px;  /* rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* shadow effect */
+    transition: transform 0.2s;  /* smooth animation */
 }
 
+/* card on hover (when mouse over it) */
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-5px);  /* move card up */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);  /* bigger shadow */
 }
 
+/* card body content */
 .card-body {
-    padding: 2rem;
+    padding: 2rem;  /* space inside card */
 }
 
+/* card title */
 .card-title {
-    color: #333;
-    font-weight: bold;
-    font-size: 1.3rem;
+    color: #333;  /* dark text */
+    font-weight: bold;  /* bold text */
+    font-size: 1.3rem;  /* bigger font */
 }
 
+/* card text */
 .card-text {
-    color: #666;
+    color: #666;  /* gray text */
 }
 
 /* icons */
@@ -106,52 +115,60 @@ main {
 
 /* buttons */
 .btn {
-    border-radius: 5px;
-    padding: 0.5rem 1.5rem;
-    font-weight: bold;
+    border-radius: 5px;  /* rounded corners */
+    padding: 0.5rem 1.5rem;  /* space inside button */
+    font-weight: bold;  /* bold text */
 }
 
+/* primary button (main action) */
 .btn-primary {
-    background: #4169e1;
-    border: none;
-    color: white;
+    background: #4169e1;  /* blue background */
+    border: none;  /* no border */
+    color: white;  /* white text */
 }
 
+/* primary button on hover */
 .btn-primary:hover {
-    background: #2a52c7;
+    background: #2a52c7;  /* darker blue */
 }
 
+/* large button */
 .btn-lg {
-    padding: 0.75rem 2rem;
-    font-size: 1rem;
+    padding: 0.75rem 2rem;  /* more padding */
+    font-size: 1rem;  /* font size */
 }
 
 /* footer */
 footer {
-    background: #2c3e50;
-    margin-top: auto;
-    padding: 1.5rem 0;
+    background: #2c3e50;  /* dark blue background */
+    margin-top: auto;  /* push to bottom */
+    padding: 1.5rem 0;  /* top and bottom padding */
 }
 
+/* footer text */
 footer p {
-    color: #ecf0f1;
-    margin: 0;
+    color: #ecf0f1;  /* light text color */
+    margin: 0;  /* no margin */
 }
 
-/* mobile responsive */
+/* mobile responsive styles (for phones and tablets) */
 @media (max-width: 768px) {
+    /* smaller heading on mobile */
     .display-4 {
         font-size: 2rem;
     }
     
+    /* smaller navbar brand on mobile */
     .navbar-brand {
         font-size: 1.1rem;
     }
     
+    /* less padding in cards on mobile */
     .card-body {
         padding: 1.5rem;
     }
     
+    /* smaller buttons on mobile */
     .btn {
         font-size: 0.9rem;
     }
