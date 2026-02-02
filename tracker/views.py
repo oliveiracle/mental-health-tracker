@@ -16,7 +16,8 @@ def home(request):
 # register new user view
 def register(request):
     if request.method == 'POST':  # if form is submitted
-        form = RegisterForm(request.POST)  # get form data
+        # get form data
+        form = RegisterForm(request.POST)
         if form.is_valid():  # check if form is valid
             user = form.save()  # save new user to database
             login(request, user)  # automatically log in the new user
