@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import MoodEntry
 
 
 class RegisterForm(UserCreationForm):
@@ -9,3 +10,10 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2")
+
+
+# form for mood entry
+class MoodEntryForm(forms.ModelForm):
+    class Meta:
+        model = MoodEntry
+        fields = ['mood_score', 'notes']
