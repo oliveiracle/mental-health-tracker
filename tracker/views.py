@@ -78,3 +78,14 @@ def mood_edit(request, pk):
     
     return render(request, 'tracker/mood_form.html', {'form': form})
 
+
+@login_required
+def mood_delete(request, pk):
+    mood = MoodEntry.objects.get(pk=pk, user=request.user)
+    if request.method == 'POST':
+        mood.delete()
+        messages.success(request, 'Mood deleted!')
+        return redirect('mood_list')
+    return render(request, 'tracker/mood_confirm_delete.html', {'mood': mood})
+
+
