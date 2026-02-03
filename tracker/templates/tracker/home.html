@@ -17,17 +17,19 @@
 <div class="row mt-5 gy-4">
   <!-- card 1 - track progress -->
   <div class="col-md-4">
-    <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'">
-      <div class="card-body text-center d-flex flex-column justify-content-between">
+    <div class="card h-100 border-0" style="background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%); border-radius: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 30px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(92, 107, 192, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'">
+      <div class="card-body text-center d-flex flex-column justify-content-between p-0">
         <div>
-          <i class="fas fa-chart-line fa-2x mb-3" style="color: #5c6bc0;"></i>
-          <h3 class="card-title" style="color: #37474f; font-weight: 600;">Track Your Progress</h3>
-          <p class="card-text" style="color: #78909c;">Monitor your mood patterns over time and understand your emotional journey.</p>
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);">
+            <i class="fas fa-chart-line" style="color: white; font-size: 2em;"></i>
+          </div>
+          <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Track Your Progress</h3>
+          <p class="card-text" style="color: #78909c; line-height: 1.6;">Monitor your mood patterns over time and understand your emotional journey.</p>
         </div>
         {% if user.is_authenticated %}
-          <a href="{% url 'mood_list' %}" class="btn btn-sm mt-4" style="background-color: #5c6bc0; border: none; color: white; border-radius: 25px; padding: 10px 25px; transition: all 0.3s;">View Your Moods</a>
+          <a href="{% url 'mood_list' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);">View Your Moods</a>
         {% else %}
-          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background-color: #5c6bc0; border: none; color: white; border-radius: 25px; padding: 10px 25px; transition: all 0.3s;">Sign In</a>
+          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);">Sign In</a>
         {% endif %}
       </div>
     </div>
@@ -35,17 +37,19 @@
 
   <!-- card 2 - journaling -->
   <div class="col-md-4">
-    <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(135deg, #f1f8e9 0%, #e0f2f1 100%); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'">
-      <div class="card-body text-center d-flex flex-column justify-content-between">
+    <div class="card h-100 border-0" style="background: linear-gradient(135deg, #f1f8e9 0%, #e0f2f1 100%); border-radius: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 30px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(67, 160, 71, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'">
+      <div class="card-body text-center d-flex flex-column justify-content-between p-0">
         <div>
-          <i class="fas fa-book fa-2x mb-3" style="color: #43a047;"></i>
-          <h3 class="card-title" style="color: #37474f; font-weight: 600;">Daily Journaling</h3>
-          <p class="card-text" style="color: #78909c;">Add notes and reflect on what affects your wellbeing each day.</p>
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);">
+            <i class="fas fa-book" style="color: white; font-size: 2em;"></i>
+          </div>
+          <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Daily Journaling</h3>
+          <p class="card-text" style="color: #78909c; line-height: 1.6;">Add notes and reflect on what affects your wellbeing each day.</p>
         </div>
         {% if user.is_authenticated %}
-          <a href="{% url 'mood_create' %}" class="btn btn-sm mt-4" style="background-color: #43a047; border: none; color: white; border-radius: 25px; padding: 10px 25px; transition: all 0.3s;">Add Mood Entry</a>
+          <a href="{% url 'mood_create' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);">Get Started</a>
         {% else %}
-          <a href="{% url 'register' %}" class="btn btn-sm mt-4" style="background-color: #43a047; border: none; color: white; border-radius: 25px; padding: 10px 25px; transition: all 0.3s;">Get Started</a>
+          <a href="{% url 'register' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);">Get Started</a>
         {% endif %}
       </div>
     </div>
@@ -53,17 +57,19 @@
 
   <!-- card 3 - security -->
   <div class="col-md-4">
-    <div class="card h-100 shadow-sm border-0" style="background: linear-gradient(135deg, #e0f7fa 0%, #f0f4c3 100%); transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'">
-      <div class="card-body text-center d-flex flex-column justify-content-between">
+    <div class="card h-100 border-0" style="background: linear-gradient(135deg, #e0f7fa 0%, #f0f4c3 100%); border-radius: 30px; transition: transform 0.3s ease, box-shadow 0.3s ease; padding: 30px;" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0, 137, 123, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'">
+      <div class="card-body text-center d-flex flex-column justify-content-between p-0">
         <div>
-          <i class="fas fa-shield-alt fa-2x mb-3" style="color: #00897b;"></i>
-          <h3 class="card-title" style="color: #37474f; font-weight: 600;">Private & Secure</h3>
-          <p class="card-text" style="color: #78909c;">Your mental health data is private and only accessible to you.</p>
+          <div style="width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, #26a69a 0%, #00897b 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);">
+            <i class="fas fa-shield-alt" style="color: white; font-size: 2em;"></i>
+          </div>
+          <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Private & Secure</h3>
+          <p class="card-text" style="color: #78909c; line-height: 1.6;">Your mental health data is private and only accessible to you.</p>
         </div>
         {% if user.is_authenticated %}
-          <p style="color: #00897b; font-weight: 600; margin-top: auto; padding-top: 10px;">✓ Logged in securely</p>
+          <p style="color: #00897b; font-weight: 600; margin-top: auto; padding-top: 10px; font-size: 1.1em;">✓ Logged in securely</p>
         {% else %}
-          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background-color: #00897b; border: none; color: white; border-radius: 25px; padding: 10px 25px; transition: all 0.3s;">Sign In</a>
+          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #26a69a 0%, #00897b 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);">Sign In</a>
         {% endif %}
       </div>
     </div>
