@@ -59,3 +59,22 @@ def mood_create(request):
         field.widget.attrs['class'] = 'form-control'
     
     return render(request, 'tracker/mood_form.html', {'form': form})
+
+
+@login_required
+def mood_edit(request, pk):
+    mood = MoodEntry.objects.get(pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = MoodEntryForm(request.POST, instance=mood)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Mood updated!')
+            return redirect('mood_list')
+    else:
+        form = MoodEntryForm(instance=mood)
+    
+    for field in form.fields.values():
+        field.widget.attrs['class'] = 'form-control'
+    
+    return render(request, 'tracker/mood_form.html', {'form': form})
+
