@@ -7,9 +7,14 @@
 <div class="row">
   <div class="col-12">
     <div class="glass-card">
-      <h2 class="mb-4">
-        <i class="fas fa-heart"></i> My Mood Entries
-      </h2>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+          <i class="fas fa-heart"></i> My Mood Entries
+        </h2>
+        <a href="{% url 'mood_create' %}" class="btn btn-primary btn-sm">
+          <i class="fas fa-plus"></i> Add New Entry
+        </a>
+      </div>
       
       <!-- show all mood entries -->
       {% if moods %}
@@ -21,6 +26,7 @@
                 <th>Mood Score</th>
                 <th>Mood</th>
                 <th>Notes</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -30,6 +36,14 @@
                   <td>{{ mood.mood_score }}/10</td>
                   <td>{{ mood.get_mood_score_display }}</td>
                   <td>{{ mood.notes|default:"No notes" }}</td>
+                  <td>
+                    <a href="{% url 'mood_edit' mood.pk %}" class="btn btn-sm btn-warning">
+                      <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a href="{% url 'mood_delete' mood.pk %}" class="btn btn-sm btn-danger">
+                      <i class="fas fa-trash"></i> Delete
+                    </a>
+                  </td>
                 </tr>
               {% endfor %}
             </tbody>
@@ -39,6 +53,7 @@
         <!-- if no entries yet -->
         <div class="alert alert-info">
           <i class="fas fa-info-circle"></i> You haven't logged any mood entries yet.
+          <a href="{% url 'mood_create' %}" class="btn btn-sm btn-primary mt-2">Start Tracking</a>
         </div>
       {% endif %}
     </div>
