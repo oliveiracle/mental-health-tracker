@@ -8,40 +8,42 @@
   <div class="col-12">
     <div class="glass-card">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>
-          <i class="fas fa-heart"></i> My Mood Entries
+        <h2 style="color: #37474f;">
+          <i class="fas fa-heart" style="color: #ec407a;"></i> My Mood Entries
         </h2>
-        <a href="{% url 'mood_create' %}" class="btn btn-primary btn-sm">
-          <i class="fas fa-plus"></i> Add New Entry
+        <a href="{% url 'mood_create' %}" class="btn btn-sm" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); color: white; border: none; border-radius: 25px; padding: 8px 20px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(67, 160, 71, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(67, 160, 71, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(67, 160, 71, 0.3)'">
+          <i class="fas fa-plus-circle"></i> Add New Entry
         </a>
       </div>
       
       <!-- show all mood entries -->
       {% if moods %}
         <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
+          <table class="table table-hover" style="border: none;">
+            <thead style="background: linear-gradient(135deg, #f5f5f5 0%, #e8eaf6 100%); border: none;">
               <tr>
-                <th>Date</th>
-                <th>Mood Score</th>
-                <th>Mood</th>
-                <th>Notes</th>
-                <th>Actions</th>
+                <th style="color: #5c6bc0; font-weight: 600; border: none;">Date</th>
+                <th style="color: #5c6bc0; font-weight: 600; border: none;">Mood Score</th>
+                <th style="color: #5c6bc0; font-weight: 600; border: none;">Mood</th>
+                <th style="color: #5c6bc0; font-weight: 600; border: none;">Notes</th>
+                <th style="color: #5c6bc0; font-weight: 600; border: none; text-align: center;">Actions</th>
               </tr>
             </thead>
             <tbody>
               {% for mood in moods %}
-                <tr>
-                  <td>{{ mood.date }}</td>
-                  <td>{{ mood.mood_score }}/10</td>
-                  <td>{{ mood.get_mood_score_display }}</td>
-                  <td>{{ mood.notes|default:"No notes" }}</td>
-                  <td>
-                    <a href="{% url 'mood_edit' mood.pk %}" class="btn btn-sm btn-warning">
-                      <i class="fas fa-edit"></i> Edit
+                <tr style="border-bottom: 1px solid #f0f0f0;">
+                  <td style="color: #546e7a; padding: 15px 10px;">{{ mood.date }}</td>
+                  <td style="color: #546e7a; padding: 15px 10px;">
+                    <span style="background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%); color: white; padding: 4px 12px; border-radius: 15px; font-weight: 500; font-size: 0.9em;">{{ mood.mood_score }}/10</span>
+                  </td>
+                  <td style="color: #546e7a; padding: 15px 10px;">{{ mood.get_mood_score_display }}</td>
+                  <td style="color: #78909c; padding: 15px 10px; font-style: italic;">{{ mood.notes|default:"No notes" }}</td>
+                  <td style="padding: 15px 10px; text-align: center;">
+                    <a href="{% url 'mood_edit' mood.pk %}" class="btn btn-sm me-2" style="background: linear-gradient(135deg, #90caf9 0%, #64b5f6 100%); color: white; border: none; border-radius: 20px; padding: 6px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(100, 181, 246, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(100, 181, 246, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(100, 181, 246, 0.3)'">
+                      <i class="fas fa-pen"></i> Edit
                     </a>
-                    <a href="{% url 'mood_delete' mood.pk %}" class="btn btn-sm btn-danger">
-                      <i class="fas fa-trash"></i> Delete
+                    <a href="{% url 'mood_delete' mood.pk %}" class="btn btn-sm" style="background: linear-gradient(135deg, #ef9a9a 0%, #e57373 100%); color: white; border: none; border-radius: 20px; padding: 6px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(229, 115, 115, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(229, 115, 115, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(229, 115, 115, 0.3)'">
+                      <i class="fas fa-trash-alt"></i> Delete
                     </a>
                   </td>
                 </tr>
@@ -51,9 +53,12 @@
         </div>
       {% else %}
         <!-- if no entries yet -->
-        <div class="alert alert-info">
-          <i class="fas fa-info-circle"></i> You haven't logged any mood entries yet.
-          <a href="{% url 'mood_create' %}" class="btn btn-sm btn-primary mt-2">Start Tracking</a>
+        <div class="alert" style="background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%); border: none; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+          <i class="fas fa-info-circle" style="color: #5c6bc0; font-size: 2em; margin-bottom: 10px;"></i>
+          <p style="color: #546e7a; margin-bottom: 15px;">You haven't logged any mood entries yet. Start your mental wellness journey today!</p>
+          <a href="{% url 'mood_create' %}" class="btn" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); color: white; border: none; border-radius: 25px; padding: 10px 25px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(67, 160, 71, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(67, 160, 71, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(67, 160, 71, 0.3)'">
+            <i class="fas fa-plus-circle"></i> Start Tracking
+          </a>
         </div>
       {% endif %}
     </div>
