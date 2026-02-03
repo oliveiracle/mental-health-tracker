@@ -22,6 +22,11 @@
         <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
         <h3 class="card-title">Track Your Progress</h3>
         <p class="card-text">Monitor your mood patterns over time.</p>
+        {% if user.is_authenticated %}
+          <a href="{% url 'mood_list' %}" class="btn btn-primary mt-3">View Your Moods</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-primary mt-3">Sign In</a>
+        {% endif %}
       </div>
     </div>
   </div>
@@ -32,6 +37,11 @@
           <i class="fas fa-book fa-3x text-success mb-3"></i>
           <h3 class="card-title">Daily Journaling</h3>
           <p class="card-text">Add notes to understand what affects your wellbeing.</p>
+          {% if user.is_authenticated %}
+            <a href="{% url 'mood_create' %}" class="btn btn-success mt-3">Add Mood Entry</a>
+          {% else %}
+            <a href="{% url 'register' %}" class="btn btn-success mt-3">Register</a>
+          {% endif %}
         </div>
       </div>
   </div>
@@ -42,6 +52,11 @@
         <i class="fas fa-shield-alt fa-3x text-info mb-3"></i>
         <h3 class="card-title">Private & Secure</h3>
         <p class="card-text">Your data is private and only accessible to you.</p>
+        {% if user.is_authenticated %}
+          <p class="text-muted small mt-3">Logged in as <strong>{{ user.username }}</strong></p>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-info mt-3">Sign In Securely</a>
+        {% endif %}
       </div>
     </div>
   </div>
