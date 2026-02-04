@@ -8,10 +8,10 @@
   <div class="col-12">
     <div class="glass-card">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 style="color: #37474f;">
-          <i class="fas fa-heart" style="color: #ec407a;"></i> My Mood Entries
+        <h2>
+          <i class="fas fa-heart"></i> My Mood Entries
         </h2>
-        <a href="{% url 'mood_create' %}" class="btn btn-sm" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); color: white; border: none; border-radius: 25px; padding: 8px 20px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(67, 160, 71, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(67, 160, 71, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(67, 160, 71, 0.3)'">
+        <a href="{% url 'mood_create' %}" class="btn btn-sm btn-primary-action">
           <i class="fas fa-plus-circle"></i> Add New Entry
         </a>
       </div>
@@ -19,30 +19,30 @@
       <!-- show all mood entries -->
       {% if moods %}
         <div class="table-responsive">
-          <table class="table table-hover" style="border: none;">
-            <thead style="background: linear-gradient(135deg, #f5f5f5 0%, #e8eaf6 100%); border: none;">
+          <table class="table table-hover">
+            <thead>
               <tr>
-                <th style="color: #5c6bc0; font-weight: 600; border: none;">Date</th>
-                <th style="color: #5c6bc0; font-weight: 600; border: none;">Mood Score</th>
-                <th style="color: #5c6bc0; font-weight: 600; border: none;">Mood</th>
-                <th style="color: #5c6bc0; font-weight: 600; border: none;">Notes</th>
-                <th style="color: #5c6bc0; font-weight: 600; border: none; text-align: center;">Actions</th>
+                <th>Date</th>
+                <th>Mood Score</th>
+                <th>Mood</th>
+                <th>Notes</th>
+                <th class="text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {% for mood in moods %}
-                <tr style="border-bottom: 1px solid #f0f0f0;">
-                  <td style="color: #546e7a; padding: 15px 10px;">{{ mood.date }}</td>
-                  <td style="color: #546e7a; padding: 15px 10px;">
-                    <span style="background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%); color: white; padding: 4px 12px; border-radius: 15px; font-weight: 500; font-size: 0.9em;">{{ mood.mood_score }}/10</span>
+                <tr>
+                  <td>{{ mood.date }}</td>
+                  <td>
+                    <span class="mood-score-badge">{{ mood.mood_score }}/10</span>
                   </td>
-                  <td style="color: #546e7a; padding: 15px 10px;">{{ mood.get_mood_score_display }}</td>
-                  <td style="color: #78909c; padding: 15px 10px; font-style: italic;">{{ mood.notes|default:"No notes" }}</td>
-                  <td style="padding: 15px 10px; text-align: center;">
-                    <a href="{% url 'mood_edit' mood.pk %}" class="btn btn-sm me-2" style="background: linear-gradient(135deg, #b39ddb 0%, #9575cd 100%); color: white; border: none; border-radius: 20px; padding: 6px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(149, 117, 205, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(149, 117, 205, 0.4)'; this.title='Update your reflection'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(149, 117, 205, 0.3)'">
+                  <td>{{ mood.get_mood_score_display }}</td>
+                  <td class="mood-notes">{{ mood.notes|default:"No notes" }}</td>
+                  <td class="text-center">
+                    <a href="{% url 'mood_edit' mood.pk %}" class="btn btn-sm btn-secondary-action btn-update" title="Update your reflection">
                       <i class="fas fa-pencil-alt"></i> Update
                     </a>
-                    <a href="{% url 'mood_delete' mood.pk %}" class="btn btn-sm" style="background: linear-gradient(135deg, #ffcc80 0%, #ffb74d 100%); color: white; border: none; border-radius: 20px; padding: 6px 16px; transition: all 0.3s ease; box-shadow: 0 2px 6px rgba(255, 183, 77, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(255, 183, 77, 0.4)'; this.title='Archive this entry'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 6px rgba(255, 183, 77, 0.3)'">
+                    <a href="{% url 'mood_delete' mood.pk %}" class="btn btn-sm btn-secondary-action btn-archive" title="Archive this entry">
                       <i class="fas fa-archive"></i> Archive
                     </a>
                   </td>
@@ -53,10 +53,10 @@
         </div>
       {% else %}
         <!-- if no entries yet -->
-        <div class="alert" style="background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%); border: none; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-          <i class="fas fa-info-circle" style="color: #5c6bc0; font-size: 2em; margin-bottom: 10px;"></i>
-          <p style="color: #546e7a; margin-bottom: 15px;">You haven't logged any mood entries yet. Start your mental wellness journey today!</p>
-          <a href="{% url 'mood_create' %}" class="btn" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); color: white; border: none; border-radius: 25px; padding: 10px 25px; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(67, 160, 71, 0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(67, 160, 71, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(67, 160, 71, 0.3)'">
+        <div class="alert empty-state-alert">
+          <i class="fas fa-info-circle"></i>
+          <p>You haven't logged any mood entries yet. Start your mental wellness journey today!</p>
+          <a href="{% url 'mood_create' %}" class="btn btn-primary-action">
             <i class="fas fa-plus-circle"></i> Start Tracking
           </a>
         </div>
