@@ -19,7 +19,7 @@ def register(request):
             messages.success(
                 request, f"Welcome {user.username}! Account created."
             )
-            return redirect('home')
+            return redirect('mood_list')
     else:
         form = RegisterForm()
 
