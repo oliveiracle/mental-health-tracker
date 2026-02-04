@@ -21,16 +21,16 @@
 </head>
 <body>
     <!-- navigation bar at top of page -->
-    <nav class="navbar navbar-expand-lg" style="background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%); box-shadow: 0 2px 8px rgba(92, 107, 192, 0.1); padding: 1.2rem 0;">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
         <!-- site logo and name -->
-        <a class="navbar-brand" href="{% url 'home' %}" style="font-weight: bold; font-size: 1.3rem; background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: opacity 0.3s;">
-          <i class="fas fa-brain" style="color: #5c6bc0; margin-right: 8px;"></i> Mental Health Tracker
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <i class="fas fa-brain"></i> Mental Health Tracker
         </a>
             
         <!-- hamburger menu button for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border-color: #5c6bc0;">
-          <span class="navbar-toggler-icon" style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%235c6bc0' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e&quot;);"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
         </button>
             
         <!-- navigation links -->
@@ -39,20 +39,20 @@
             {% if user.is_authenticated %}  <!-- if user is logged in -->
               <li class="nav-item">
                 <!-- show username -->
-                <span class="navbar-text me-4" style="color: #5c6bc0; font-weight: 600; display: flex; align-items: center;"><i class="fas fa-user" style="margin-right: 8px;"></i> {{ user.username }}</span>
+                <span class="navbar-username"><i class="fas fa-user"></i> {{ user.username }}</span>
               </li>
               <li class="nav-item">
                 <!-- logout link -->
-                <a class="nav-link" href="{% url 'logout' %}" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); color: white !important; border-radius: 25px; padding: 10px 20px; transition: all 0.3s; font-weight: 500; display: inline-flex; align-items: center; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(92, 107, 192, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(92, 107, 192, 0.25)'"><i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i> Logout</a>
+                <a class="nav-link nav-btn-primary" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>
             {% else %}  <!-- if user is not logged in -->
               <li class="nav-item">
                   <!-- login link -->
-                  <a class="nav-link" href="{% url 'login' %}" style="color: #5c6bc0 !important; font-weight: 600; margin-right: 15px; display: inline-flex; align-items: center; transition: all 0.3s;" onmouseover="this.style.color='#7e57c2'" onmouseout="this.style.color='#5c6bc0'"><i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i> Sign In</a>
+                  <a class="nav-link nav-link-primary" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Sign In</a>
               </li>
               <li class="nav-item">
                 <!-- register link -->
-                <a class="nav-link" href="{% url 'register' %}" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); color: white !important; border-radius: 25px; padding: 10px 20px; transition: all 0.3s; font-weight: 500; display: inline-flex; align-items: center; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.25);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(92, 107, 192, 0.35)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(92, 107, 192, 0.25)'"><i class="fas fa-user-plus" style="margin-right: 8px;"></i> Get Started</a>
+                <a class="nav-link nav-btn-primary" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Get Started</a>
               </li>
             {% endif %}
           </ul>
