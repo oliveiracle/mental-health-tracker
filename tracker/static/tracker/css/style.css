@@ -296,6 +296,17 @@ main {
     line-height: 1.6;
 }
 
+/* card link wrapper - removes underline from links wrapping cards */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* ===== MOOD LIST STYLES ===== */
 .glass-card {
     background: white;
