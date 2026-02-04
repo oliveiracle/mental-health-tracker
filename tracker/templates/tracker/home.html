@@ -26,11 +26,6 @@
           <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Track Your Progress</h3>
           <p class="card-text" style="color: #78909c; line-height: 1.6;">Monitor your mood patterns over time and understand your emotional journey.</p>
         </div>
-        {% if user.is_authenticated %}
-          <a href="{% url 'mood_list' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);">View Your Moods</a>
-        {% else %}
-          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #5c6bc0 0%, #7e57c2 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(92, 107, 192, 0.3);">Sign In</a>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -46,11 +41,6 @@
           <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Daily Journaling</h3>
           <p class="card-text" style="color: #78909c; line-height: 1.6;">Add notes and reflect on what affects your wellbeing each day.</p>
         </div>
-        {% if user.is_authenticated %}
-          <a href="{% url 'mood_create' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);">Get Started</a>
-        {% else %}
-          <a href="{% url 'register' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(67, 160, 71, 0.3);">Get Started</a>
-        {% endif %}
       </div>
     </div>
   </div>
@@ -66,11 +56,6 @@
           <h3 class="card-title" style="color: #37474f; font-weight: 600; margin-bottom: 15px;">Private & Secure</h3>
           <p class="card-text" style="color: #78909c; line-height: 1.6;">Your mental health data is private and only accessible to you.</p>
         </div>
-        {% if user.is_authenticated %}
-          <p style="color: #00897b; font-weight: 600; margin-top: auto; padding-top: 10px; font-size: 1.1em;">✓ Logged in securely</p>
-        {% else %}
-          <a href="{% url 'login' %}" class="btn btn-sm mt-4" style="background: linear-gradient(135deg, #26a69a 0%, #00897b 100%); border: none; color: white; border-radius: 25px; padding: 12px 28px; transition: all 0.3s; font-weight: 500; box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3);">Sign In</a>
-        {% endif %}
       </div>
     </div>
   </div>
