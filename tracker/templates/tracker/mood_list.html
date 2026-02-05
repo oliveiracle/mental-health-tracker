@@ -64,4 +64,77 @@
     </div>
   </div>
 </div>
+
+<!-- pagination controls -->
+{% if is_paginated %}
+<div class="row mt-4">
+  <div class="col-12">
+    <nav class="d-flex justify-content-center align-items-center gap-2">
+      <!-- previous page button -->
+      {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-sm btn-secondary-action" title="Go to first page">
+          <i class="fas fa-step-backward"></i> First
+        </a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-sm btn-secondary-action" title="Go to previous page">
+          <i class="fas fa-chevron-left"></i> Previous
+        </a>
+      {% else %}
+        <button class="btn btn-sm btn-secondary-action" disabled>
+          <i class="fas fa-step-backward"></i> First
+        </button>
+        <button class="btn btn-sm btn-secondary-action" disabled>
+          <i class="fas fa-chevron-left"></i> Previous
+        </button>
+      {% endif %}
+
+      <!-- page indicator -->
+      <span class="px-3 text-muted">
+        Page <strong>{{ page_obj.number }}</strong> of <strong>{{ page_obj.paginator.num_pages }}</strong>
+      </span>
+
+      <!-- next page button -->
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-sm btn-secondary-action" title="Go to next page">
+          Next <i class="fas fa-chevron-right"></i>
+        </a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-sm btn-secondary-action" title="Go to last page">
+          Last <i class="fas fa-step-forward"></i>
+        </a>
+      {% else %}
+        <button class="btn btn-sm btn-secondary-action" disabled>
+          Next <i class="fas fa-chevron-right"></i>
+        </button>
+        <button class="btn btn-sm btn-secondary-action" disabled>
+          Last <i class="fas fa-step-forward"></i>
+        </button>
+      {% endif %}
+    </nav>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+<style>
+  .btn-secondary-action {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-secondary-action:hover:not(:disabled) {
+    background-color: #e8eaf6;
+    color: #5c6bc0;
+    border-color: #5c6bc0;
+  }
+
+  .btn-secondary-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+</style>
 {% endblock %}
