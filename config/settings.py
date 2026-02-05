@@ -11,19 +11,22 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # base directory of project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# secret key for security (keep this secret in production)
-SECRET_KEY = 'django-insecure-jh+!hof+d#b$s7&vr*0+dwsrmwk1$3%(q^d05zg' \
-             '(2%7-lngh9g'
+# SECURITY WARNING: keep the secret key used in production secret!
+# Load from environment variable for security
+SECRET_KEY = config('SECRET_KEY')
 
-# debug mode (turn off in production)
-DEBUG = True
+# SECURITY WARNING: don't run with debug turned on in production!
+# Load from environment variable - will be False in production
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # allowed hosts for the website
-ALLOWED_HOSTS = ['*']
+# In production, add your domain here
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 
 # apps installed in this project
 INSTALLED_APPS = [
