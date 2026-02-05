@@ -30,7 +30,7 @@
         </a>
             
         <!-- hamburger menu button for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation menu">
           <span class="navbar-toggler-icon"></span>
         </button>
             
@@ -44,20 +44,20 @@
               </li>
               <li class="nav-item">
                 <!-- my moods link -->
-                <a class="nav-link nav-link-primary" href="{% url 'mood_list' %}"><i class="fas fa-chart-line"></i> My Moods</a>
+                <a class="nav-link nav-link-primary" href="{% url 'mood_list' %}" aria-label="View my mood entries"><i class="fas fa-chart-line"></i> My Moods</a>
               </li>
               <li class="nav-item">
                 <!-- logout link -->
-                <a class="nav-link nav-btn-primary" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <a class="nav-link nav-btn-primary" href="{% url 'logout' %}" aria-label="Logout from your account"><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>
             {% else %}  <!-- if user is not logged in -->
               <li class="nav-item">
                   <!-- login link -->
-                  <a class="nav-link nav-link-primary" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                  <a class="nav-link nav-link-primary" href="{% url 'login' %}" aria-label="Sign in to your account"><i class="fas fa-sign-in-alt"></i> Sign In</a>
               </li>
               <li class="nav-item">
                 <!-- register link -->
-                <a class="nav-link nav-btn-primary" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Get Started</a>
+                <a class="nav-link nav-btn-primary" href="{% url 'register' %}" aria-label="Create a new account"><i class="fas fa-user-plus"></i> Get Started</a>
               </li>
             {% endif %}
           </ul>
@@ -72,7 +72,7 @@
           <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
             {{ message }}  <!-- display message text -->
             <!-- close button -->
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close notification"></button>
           </div>
         {% endfor %}
       </div>
