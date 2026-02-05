@@ -42,6 +42,10 @@
                 <span class="navbar-username"><i class="fas fa-user"></i> {{ user.username }}</span>
               </li>
               <li class="nav-item">
+                <!-- my moods link -->
+                <a class="nav-link nav-link-primary" href="{% url 'mood_list' %}"><i class="fas fa-chart-line"></i> My Moods</a>
+              </li>
+              <li class="nav-item">
                 <!-- logout link -->
                 <a class="nav-link nav-btn-primary" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
               </li>
