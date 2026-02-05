@@ -3,12 +3,96 @@
 {% block title %}Add Mood{% endblock %}
 
 {% block content %}
-<h2>Add Mood Entry</h2>
+<div class="row">
+  <div class="col-lg-6 mx-auto">
+    <!-- form card -->
+    <div class="glass-card">
+      <div class="text-center mb-4">
+        <h2 class="mb-2"><i class="fas fa-pen-fancy text-primary"></i> Add Mood Entry</h2>
+        <p class="lead text-muted">How are you feeling today?</p>
+      </div>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="{% url 'mood_list' %}" class="btn btn-secondary">Cancel</a>
-</form>
+      <form method="post">
+        {% csrf_token %}
+        
+        <!-- mood score field -->
+        <div class="mb-4">
+          <label for="{{ form.mood_score.id_for_label }}" class="form-label">
+            <i class="fas fa-smile text-success"></i> Mood Score
+          </label>
+          {% if form.mood_score.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ form.mood_score.errors }}
+            </div>
+          {% endif %}
+          {{ form.mood_score }}
+          <small class="form-text text-muted d-block mt-2">
+            Select a score from 1 (Very Low) to 10 (Excellent)
+          </small>
+        </div>
+
+        <!-- notes field -->
+        <div class="mb-4">
+          <label for="{{ form.notes.id_for_label }}" class="form-label">
+            <i class="fas fa-notebook text-info"></i> Notes (Optional)
+          </label>
+          {% if form.notes.errors %}
+            <div class="alert alert-danger" role="alert">
+              {{ form.notes.errors }}
+            </div>
+          {% endif %}
+          {{ form.notes }}
+          <small class="form-text text-muted d-block mt-2">
+            Add any additional thoughts or context about your mood
+          </small>
+        </div>
+
+        <!-- action buttons -->
+        <div class="d-grid gap-2 d-sm-flex justify-content-center">
+          <button type="submit" class="btn btn-primary-action">
+            <i class="fas fa-check"></i> Save Entry
+          </button>
+          <a href="{% url 'mood_list' %}" class="btn btn-secondary-action">
+            <i class="fas fa-times"></i> Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<style>
+  .btn-primary-action {
+    background: linear-gradient(135deg, #7e57c2 0%, #5c6bc0 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary-action:hover {
+    background: linear-gradient(135deg, #5c6bc0 0%, #42a5f5 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 87, 194, 0.4);
+  }
+
+  .btn-secondary-action {
+    background-color: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    padding: 0.75rem 2rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s;
+  }
+
+  .btn-secondary-action:hover {
+    background-color: #e8eaf6;
+    color: #5c6bc0;
+  }
+</style>
 {% endblock %}
+
