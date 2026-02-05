@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.core.paginator import Paginator
 from .forms import RegisterForm, MoodEntryForm
 from .models import MoodEntry
 
@@ -38,7 +39,14 @@ def logout_view(request):
 
 @login_required
 def mood_list(request):
-    moods = MoodEntry.objects.filter(user=request.user)
+    # get all moods for current user, ordered by date (newest first)
+    all_moods = MoodEntry.objects.filter(user=request.user)
+    
+    # set up paginator: 10 moods per page
+    paginator = Paginator(all_moods, 10)
+    page_number = request.GET.get('page')
+    moods = paginator.get_page(page_number)
+    
     return render(request, 'tracker/mood_list.html', {'moods': moods})
 
 
