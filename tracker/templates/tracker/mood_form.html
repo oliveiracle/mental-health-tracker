@@ -39,8 +39,15 @@
                   {{ form.mood_score.errors }}
                 </div>
               {% endif %}
-              {{ form.mood_score }}
+              <div class="mood-slider-wrapper">
+                <div class="gradient-track"></div>
+                {{ form.mood_score }}
+              </div>
+              <div class="score-display mt-3">
+                Current score: <span id="score-value">5</span>
+              </div>
               <div class="scale-labels mt-3">
+                <span>0</span>
                 <span>1</span>
                 <span>2</span>
                 <span>3</span>
@@ -53,7 +60,7 @@
                 <span>10</span>
               </div>
               <small class="form-text text-muted d-block mt-3">
-                Select a score from 1 (Very Low) to 10 (Excellent).
+                Select a score from 0 (Very Low) to 10 (Outstanding).
               </small>
               <div class="insight-box mt-3">
                 <div class="d-flex gap-2 align-items-center">
@@ -165,11 +172,85 @@
 
   .scale-labels {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(11, 1fr);
     gap: 0.25rem;
     font-size: 0.85rem;
     color: #6c757d;
     text-align: center;
+  }
+
+  .score-display {
+    font-weight: 600;
+    color: #5c6bc0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mood-slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .gradient-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 12px;
+    transform: translateY(-50%);
+    background: linear-gradient(90deg, #dc2626 0%, #ef4444 20%, #f59e0b 40%, #10b981 60%, #3b82f6 80%, #1e3a8a 100%);
+    border-radius: 999px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .form-range {
+    width: 100%;
+    appearance: none;
+    height: 12px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+    position: relative;
+    z-index: 2;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 12px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--mood-color, #ef4444);
+    border: 3px solid #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    position: relative;
+    z-index: 3;
+  }
+
+  .form-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--mood-color, #ef4444);
+    border: 3px solid #fff;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+  }
+
+  .form-range::-moz-range-track {
+    height: 12px;
+    border-radius: 999px;
+    background: transparent;
+    border: none;
   }
 
   .insight-box,
@@ -188,8 +269,30 @@
 
 <script>
   (function () {
+    const moodField = document.getElementById("{{ form.mood_score.id_for_label }}");
+    const scoreValue = document.getElementById("score-value");
     const notesField = document.getElementById("{{ form.notes.id_for_label }}");
     const counter = document.getElementById("notes-counter");
+    if (moodField && scoreValue) {
+      const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+      const colorForValue = (value) => {
+        const t = value / 10;
+        const r = lerp(239, 30, t);
+        const g = lerp(68, 58, t);
+        const b = lerp(68, 138, t);
+        return `rgb(${r}, ${g}, ${b})`;
+      };
+      const updateScore = () => {
+        const value = Number(moodField.value || 5);
+        const color = colorForValue(value);
+        scoreValue.textContent = value;
+        scoreValue.style.color = color;
+        moodField.style.setProperty("--mood-color", color);
+      };
+      moodField.addEventListener("input", updateScore);
+      updateScore();
+    }
+
     if (!notesField || !counter) return;
 
     const updateCount = () => {

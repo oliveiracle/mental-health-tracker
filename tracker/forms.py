@@ -14,6 +14,32 @@ class RegisterForm(UserCreationForm):
 
 # form for mood entry
 class MoodEntryForm(forms.ModelForm):
+    mood_score = forms.IntegerField(
+        min_value=0,
+        max_value=10,
+        widget=forms.NumberInput(
+            attrs={
+                "type": "range",
+                "min": "0",
+                "max": "10",
+                "step": "1",
+                "class": "form-range",
+                "value": "5",
+            }
+        ),
+    )
+    notes = forms.CharField(
+        required=False,
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control",
+                "rows": "6",
+                "maxlength": "500",
+                "placeholder": "Ex.: Dormi pouco, muito trabalho, mas consegui caminhar.",
+            }
+        ),
+    )
+
     class Meta:
         model = MoodEntry
         fields = ['mood_score', 'notes']

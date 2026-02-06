@@ -5,18 +5,19 @@ from django.contrib.auth.models import User
 
 # model for storing mood entries
 class MoodEntry(models.Model):
-    # choices for mood score (1 to 10)
+    # choices for mood score (0 to 10)
     MOOD_CHOICES = [
-        (1, 'Very Low'),
-        (2, 'Low'),
-        (3, 'Below Average'),
-        (4, 'Slightly Below Average'),
-        (5, 'Average'),
-        (6, 'Slightly Above Average'),
-        (7, 'Good'),
-        (8, 'Very Good'),
-        (9, 'Great'),
-        (10, 'Excellent'),
+        (0, 'Very Low'),
+        (1, 'Low'),
+        (2, 'Below Average'),
+        (3, 'Slightly Below Average'),
+        (4, 'Average'),
+        (5, 'Slightly Above Average'),
+        (6, 'Good'),
+        (7, 'Very Good'),
+        (8, 'Great'),
+        (9, 'Excellent'),
+        (10, 'Outstanding'),
     ]
     
     # link to user (each entry belongs to a user)
@@ -28,7 +29,7 @@ class MoodEntry(models.Model):
     )
     # automatically set date when created
     date = models.DateField(auto_now_add=True)
-    # mood score 1-10
+    # mood score 0-10
     mood_score = models.IntegerField(choices=MOOD_CHOICES)
     # optional notes
     notes = models.TextField(blank=True, null=True)
