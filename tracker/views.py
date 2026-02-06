@@ -3,6 +3,9 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.db.models import Avg
+from django.utils import timezone
+from datetime import timedelta
 from .forms import RegisterForm, MoodEntryForm
 from .models import MoodEntry
 
@@ -95,5 +98,38 @@ def mood_delete(request, pk):
         messages.success(request, 'Mood deleted!')
         return redirect('mood_list')
     return render(request, 'tracker/mood_confirm_delete.html', {'mood': mood})
+
+
+@login_required
+def mood_trends(request):
+    today = timezone.localdate()
+    start_date = today - timedelta(days=6)
+    days = [start_date + timedelta(days=offset) for offset in range(7)]
+
+    weekly_data = (
+        MoodEntry.objects.filter(user=request.user, date__range=(start_date, today))
+        .values('date')
+        .annotate(avg_score=Avg('mood_score'))
+    )
+    avg_map = {item['date']: item['avg_score'] for item in weekly_data}
+
+    labels = [day.strftime('%a') for day in days]
+    scores = [round(avg_map.get(day) or 0, 2) for day in days]
+
+    weekly_avg = round(
+        (sum(scores) / len([s for s in scores if s > 0])) if any(s > 0 for s in scores) else 0,
+        2,
+    )
+    weekly_max = max(scores) if scores else 0
+    weekly_min = min([s for s in scores if s > 0], default=0)
+
+    context = {
+        'labels': labels,
+        'scores': scores,
+        'weekly_avg': weekly_avg,
+        'weekly_max': weekly_max,
+        'weekly_min': weekly_min,
+    }
+    return render(request, 'tracker/mood_trends.html', context)
 
 
