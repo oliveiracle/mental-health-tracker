@@ -4,51 +4,93 @@
 
 {% block content %}
 <div class="row">
-  <div class="col-lg-6 mx-auto">
+  <div class="col-lg-10 col-xl-9 mx-auto">
     <!-- form card -->
     <div class="glass-card">
       <div class="text-center mb-4">
         <h2 class="mb-2"><i class="fas fa-pen-fancy text-primary"></i> Add Mood Entry</h2>
-        <p class="lead text-muted">How are you feeling today?</p>
+        <p class="lead text-muted">Capture a quick snapshot of how you’re feeling today.</p>
+      </div>
+
+      <div class="info-card mb-4">
+        <div class="d-flex align-items-start gap-3">
+          <div class="info-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div>
+            <h5 class="mb-1">Quick tip</h5>
+            <p class="mb-0 text-muted">Be honest and brief. A few words are enough to spot patterns over time.</p>
+          </div>
+        </div>
       </div>
 
       <form method="post">
         {% csrf_token %}
         
-        <!-- mood score field -->
-        <div class="mb-4">
-          <label for="{{ form.mood_score.id_for_label }}" class="form-label">
-            <i class="fas fa-smile text-success"></i> Mood Score
-          </label>
-          {% if form.mood_score.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ form.mood_score.errors }}
+        <div class="row g-4">
+          <!-- mood score field -->
+          <div class="col-lg-5">
+            <div class="section-card h-100">
+              <label for="{{ form.mood_score.id_for_label }}" class="form-label">
+                <i class="fas fa-chart-line text-success"></i> Mood Score
+              </label>
+              {% if form.mood_score.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {{ form.mood_score.errors }}
+                </div>
+              {% endif %}
+              {{ form.mood_score }}
+              <div class="scale-labels mt-3">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+                <span>6</span>
+                <span>7</span>
+                <span>8</span>
+                <span>9</span>
+                <span>10</span>
+              </div>
+              <small class="form-text text-muted d-block mt-3">
+                Select a score from 1 (Very Low) to 10 (Excellent).
+              </small>
+              <div class="insight-box mt-3">
+                <div class="d-flex gap-2 align-items-center">
+                  <i class="fas fa-compass text-primary"></i>
+                  <span>Use the same scale each day for better insights.</span>
+                </div>
+              </div>
             </div>
-          {% endif %}
-          {{ form.mood_score }}
-          <small class="form-text text-muted d-block mt-2">
-            Select a score from 1 (Very Low) to 10 (Excellent)
-          </small>
-        </div>
+          </div>
 
-        <!-- notes field -->
-        <div class="mb-4">
-          <label for="{{ form.notes.id_for_label }}" class="form-label">
-            <i class="fas fa-notebook text-info"></i> Notes (Optional)
-          </label>
-          {% if form.notes.errors %}
-            <div class="alert alert-danger" role="alert">
-              {{ form.notes.errors }}
+          <!-- notes field -->
+          <div class="col-lg-7">
+            <div class="section-card h-100">
+              <label for="{{ form.notes.id_for_label }}" class="form-label">
+                <i class="fas fa-notes-medical text-info"></i> Notes (Optional)
+              </label>
+              {% if form.notes.errors %}
+                <div class="alert alert-danger" role="alert">
+                  {{ form.notes.errors }}
+                </div>
+              {% endif %}
+              {{ form.notes }}
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <small class="form-text text-muted">
+                  Add any context about sleep, stress, work, or health.
+                </small>
+                <small id="notes-counter" class="form-text text-muted">0</small>
+              </div>
+              <div class="prompt-box mt-3">
+                <p class="mb-0">Prompt: What influenced your mood most today?</p>
+              </div>
             </div>
-          {% endif %}
-          {{ form.notes }}
-          <small class="form-text text-muted d-block mt-2">
-            Add any additional thoughts or context about your mood
-          </small>
+          </div>
         </div>
 
         <!-- action buttons -->
-        <div class="d-grid gap-2 d-sm-flex justify-content-center">
+        <div class="d-grid gap-2 d-sm-flex justify-content-center mt-4">
           <button type="submit" class="btn btn-primary-action">
             <i class="fas fa-check"></i> Save Entry
           </button>
@@ -93,6 +135,72 @@
     background-color: #e8eaf6;
     color: #5c6bc0;
   }
+
+  .info-card {
+    background: rgba(124, 87, 194, 0.08);
+    border: 1px solid rgba(124, 87, 194, 0.2);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(124, 87, 194, 0.15);
+    color: #5c6bc0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+
+  .section-card {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  }
+
+  .scale-labels {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    color: #6c757d;
+    text-align: center;
+  }
+
+  .insight-box,
+  .prompt-box {
+    background: rgba(92, 107, 192, 0.08);
+    color: #4b4f8c;
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  textarea.form-control {
+    min-height: 160px;
+  }
 </style>
+
+<script>
+  (function () {
+    const notesField = document.getElementById("{{ form.notes.id_for_label }}");
+    const counter = document.getElementById("notes-counter");
+    if (!notesField || !counter) return;
+
+    const updateCount = () => {
+      const max = notesField.getAttribute("maxlength");
+      const current = notesField.value.length;
+      counter.textContent = max ? `${current}/${max}` : `${current} chars`;
+    };
+
+    notesField.addEventListener("input", updateCount);
+    updateCount();
+  })();
+</script>
 {% endblock %}
 
