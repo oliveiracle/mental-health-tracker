@@ -3,7 +3,7 @@
 {% block title %}Mood Trends - Mental Health Tracker{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row mood-trends-page">
   <div class="col-12">
     <div class="glass-card">
       <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
@@ -19,7 +19,7 @@
       <div class="row g-4">
         <div class="col-lg-8">
           <div class="chart-card">
-            <canvas id="moodChart" height="120"></canvas>
+            <canvas id="moodChart" height="120" data-labels="{{ labels|join:',' }}" data-scores="{{ scores|join:',' }}"></canvas>
           </div>
         </div>
         <div class="col-lg-4">
@@ -44,81 +44,4 @@
     </div>
   </div>
 </div>
-
-{{ labels|json_script:"mood-labels" }}
-{{ scores|json_script:"mood-scores" }}
-
-<style>
-  .chart-card {
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 16px;
-    padding: 1.5rem;
-    border: 1px solid rgba(0, 0, 0, 0.06);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
-  }
-
-  .summary-card {
-    background: rgba(92, 107, 192, 0.08);
-    border-radius: 16px;
-    padding: 1.5rem;
-    border: 1px solid rgba(92, 107, 192, 0.18);
-  }
-
-  .summary-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.6rem 0;
-    border-bottom: 1px dashed rgba(92, 107, 192, 0.2);
-  }
-
-  .summary-item:last-child {
-    border-bottom: none;
-  }
-</style>
-{% endblock %}
-
-{% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  const labels = JSON.parse(document.getElementById("mood-labels").textContent);
-  const scores = JSON.parse(document.getElementById("mood-scores").textContent);
-
-  const ctx = document.getElementById("moodChart").getContext("2d");
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels,
-      datasets: [
-        {
-          label: "Mood Score",
-          data: scores,
-          borderColor: "#5c6bc0",
-          backgroundColor: "rgba(92, 107, 192, 0.18)",
-          fill: true,
-          tension: 0.35,
-          pointRadius: 4,
-          pointBackgroundColor: "#5c6bc0",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          min: 0,
-          max: 10,
-          ticks: {
-            stepSize: 1,
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          display: false,
-        },
-      },
-    },
-  });
-</script>
 {% endblock %}

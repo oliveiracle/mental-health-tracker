@@ -3,7 +3,7 @@
 {% block title %}Delete Mood{% endblock %}
 
 {% block content %}
-<div class="row">
+<div class="row mood-delete-page">
   <div class="col-lg-8 col-xl-7 mx-auto">
     <!-- delete confirmation card -->
     <div class="glass-card">
@@ -81,95 +81,6 @@
     </div>
   </div>
 </div>
-
-<style>
-  .btn-danger-action {
-    background: linear-gradient(135deg, #ef5350 0%, #e53935 100%);
-    color: white;
-    border: none;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .btn-danger-action:hover {
-    background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(239, 83, 80, 0.4);
-  }
-
-  .btn-secondary-action {
-    background-color: #f5f5f5;
-    color: #666;
-    border: 1px solid #ddd;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background-color 0.2s;
-  }
-
-  .btn-secondary-action:hover {
-    background-color: #e8eaf6;
-    color: #5c6bc0;
-  }
-
-  .warning-badge {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(239, 83, 80, 0.15);
-    color: #e53935;
-    font-size: 1.5rem;
-  }
-
-  .support-card {
-    background: rgba(92, 107, 192, 0.08);
-    border: 1px solid rgba(92, 107, 192, 0.2);
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
-  }
-
-  .support-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(92, 107, 192, 0.15);
-    color: #5c6bc0;
-    font-size: 1.1rem;
-  }
-
-  .detail-card {
-    border-radius: 16px;
-    border: 1px solid rgba(229, 57, 53, 0.2);
-    background: rgba(255, 255, 255, 0.85);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-  }
-
-  .mood-score-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  .note-preview {
-    background: rgba(92, 107, 192, 0.08);
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    color: #4b4f8c;
-  }
-</style>
 {% endblock %}
 
 

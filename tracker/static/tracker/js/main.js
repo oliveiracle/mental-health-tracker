@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeNavbarHoverEffects();
     initializeCardHoverEffects();
     initializeButtonHoverEffects();
+    initializeMoodFormInteractions();
+    initializeMoodTrendsChart();
 });
 
 // navbar button hover effects
@@ -93,4 +95,117 @@ function initializeButtonHoverEffects() {
             }
         });
     });
+}
+
+function initializeMoodFormInteractions() {
+    const moodField = document.querySelector('.mood-form-page .form-range');
+    const scoreValue = document.querySelector('.mood-form-page #score-value');
+    const notesField = document.querySelector('.mood-form-page textarea[name="notes"]');
+    const counter = document.querySelector('.mood-form-page #notes-counter');
+
+    if (moodField && scoreValue) {
+        const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+        const colorForValue = (value) => {
+            const t = value / 10;
+            const r = lerp(239, 30, t);
+            const g = lerp(68, 58, t);
+            const b = lerp(68, 138, t);
+            return `rgb(${r}, ${g}, ${b})`;
+        };
+
+        const updateScore = () => {
+            const value = Number(moodField.value || 5);
+            const color = colorForValue(value);
+            scoreValue.textContent = value;
+            scoreValue.style.color = color;
+            moodField.style.setProperty('--mood-color', color);
+        };
+
+        moodField.addEventListener('input', updateScore);
+        updateScore();
+    }
+
+    if (notesField && counter) {
+        const updateCount = () => {
+            const max = notesField.getAttribute('maxlength');
+            const current = notesField.value.length;
+            counter.textContent = max ? `${current}/${max}` : `${current} chars`;
+        };
+
+        notesField.addEventListener('input', updateCount);
+        updateCount();
+    }
+}
+
+function loadChartJs() {
+    return new Promise((resolve, reject) => {
+        if (window.Chart) {
+            resolve();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error('Failed to load Chart.js'));
+        document.head.appendChild(script);
+    });
+}
+
+function initializeMoodTrendsChart() {
+    const chartElement = document.getElementById('moodChart');
+    if (!chartElement) return;
+
+    const labelsRaw = chartElement.dataset.labels || '';
+    const scoresRaw = chartElement.dataset.scores || '';
+    const labels = labelsRaw.split(',').filter(Boolean);
+    const scores = scoresRaw
+        .split(',')
+        .filter((value) => value.length)
+        .map((value) => Number(value));
+
+    loadChartJs()
+        .then(() => {
+            const ctx = chartElement.getContext('2d');
+            if (!ctx) return;
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Mood Score',
+                            data: scores,
+                            borderColor: '#5c6bc0',
+                            backgroundColor: 'rgba(92, 107, 192, 0.18)',
+                            fill: true,
+                            tension: 0.35,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#5c6bc0',
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 10,
+                            ticks: {
+                                stepSize: 1,
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            display: false,
+                        },
+                    },
+                },
+            });
+        })
+        .catch(() => {
+            // Silently ignore chart errors to avoid blocking the page.
+        });
 }
