@@ -3,6 +3,7 @@
 {% block title %}Add Mood{% endblock %}
 
 {% block content %}
+{% url 'mood_list' as mood_list_url %}
 <div class="row mood-form-page">
   <div class="col-lg-10 col-xl-9 mx-auto">
     <!-- form card -->
@@ -101,7 +102,7 @@
           <button type="submit" class="btn btn-primary-action">
             <i class="fas fa-check"></i> Save Entry
           </button>
-          <a href="{% url 'mood_list' %}" class="btn btn-secondary-action">
+          <a href="{{ request.META.HTTP_REFERER|default:mood_list_url }}" class="btn btn-secondary-action">
             <i class="fas fa-times"></i> Cancel
           </a>
         </div>
