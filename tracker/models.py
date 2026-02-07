@@ -47,3 +47,26 @@ class MoodEntry(models.Model):
         return (
             f"{self.user.username} - {self.date} - Score: {self.mood_score}"
         )
+
+
+class Resource(models.Model):
+    CATEGORY_CHOICES = [
+        ("adhd", "ADHD"),
+        ("depression", "Depression"),
+        ("anxiety", "Anxiety"),
+        ("general", "General"),
+    ]
+
+    title = models.CharField(max_length=120)
+    description = models.TextField()
+    link = models.URLField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["category", "title"]
+        verbose_name_plural = "Resources"
+
+    def __str__(self):
+        return self.title

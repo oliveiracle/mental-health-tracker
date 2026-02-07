@@ -10,4 +10,5 @@ urlpatterns = [
     path('mood/add/', views.mood_create, name='mood_create'),
     path('mood/<int:pk>/edit/', views.mood_edit, name='mood_edit'),
     path('mood/<int:pk>/delete/', views.mood_delete, name='mood_delete'),
+    path('resources/', views.resource_list, name='resource_list'),
 ]

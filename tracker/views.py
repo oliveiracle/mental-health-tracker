@@ -7,7 +7,7 @@ from django.db.models import Avg
 from django.utils import timezone
 from datetime import timedelta
 from .forms import RegisterForm, MoodEntryForm
-from .models import MoodEntry
+from .models import MoodEntry, Resource
 
 
 def home(request):
@@ -147,5 +147,29 @@ def mood_trends(request):
         'weekly_min': weekly_min,
     }
     return render(request, 'tracker/mood_trends.html', context)
+
+
+@login_required
+def resource_list(request):
+    categories = Resource.CATEGORY_CHOICES
+    resources = Resource.objects.all().order_by('category', 'title')
+    grouped_resources = {key: [] for key, _ in categories}
+
+    for resource in resources:
+        grouped_resources[resource.category].append(resource)
+
+    sections = [
+        {
+            'key': key,
+            'label': label,
+            'items': grouped_resources.get(key, []),
+        }
+        for key, label in categories
+    ]
+
+    context = {
+        'sections': sections,
+    }
+    return render(request, 'tracker/resources_list.html', context)
 
 

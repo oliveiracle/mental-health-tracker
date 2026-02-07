@@ -1,0 +1,47 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Resources - Mental Health Tracker{% endblock %}
+
+{% block content %}
+<div class="row resources-page">
+  <div class="col-12">
+    <div class="glass-card">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+        <div>
+          <h2 class="mb-1"><i class="fas fa-book-medical"></i> Mental Health Resources</h2>
+          <p class="text-muted mb-0">Curated support links for ADHD, depression, anxiety, and general wellbeing.</p>
+        </div>
+        <a href="{% url 'mood_list' %}" class="btn btn-secondary-action">
+          <i class="fas fa-arrow-left"></i> Back to My Moods
+        </a>
+      </div>
+
+      {% for section in sections %}
+        <div class="resource-section">
+          <h4 class="section-title">{{ section.label }}</h4>
+          <div class="row g-3">
+            {% for resource in section.items %}
+              <div class="col-md-6">
+                <div class="resource-card">
+                  <h5 class="resource-title">{{ resource.title }}</h5>
+                  <p class="resource-description">{{ resource.description }}</p>
+                  <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
+                    Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </div>
+            {% empty %}
+              <div class="col-12">
+                <div class="empty-state">
+                  <i class="fas fa-info-circle"></i>
+                  <p class="mb-0">No resources added yet for {{ section.label }}.</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

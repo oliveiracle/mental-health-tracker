@@ -1114,6 +1114,69 @@ footer p {
     border-bottom: none;
 }
 
+/* ===== RESOURCES PAGE ===== */
+.resources-page .resource-section {
+    margin-bottom: 2rem;
+}
+
+.resources-page .section-title {
+    font-size: 1.1rem;
+    color: #5c6bc0;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.resources-page .resource-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(92, 107, 192, 0.12);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.resources-page .resource-title {
+    margin: 0;
+    font-size: 1rem;
+    color: #37474f;
+    font-weight: 600;
+}
+
+.resources-page .resource-description {
+    margin: 0;
+    color: #546e7a;
+    font-size: 0.9rem;
+}
+
+.resources-page .resource-link {
+    color: #5c6bc0;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.resources-page .resource-link:hover {
+    color: #3949ab;
+    text-decoration: underline;
+}
+
+.resources-page .empty-state {
+    background: rgba(92, 107, 192, 0.08);
+    border: 1px dashed rgba(92, 107, 192, 0.3);
+    border-radius: 12px;
+    padding: 1rem;
+    color: #4b4f8c;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 /* ===== EXTRA LARGE DESKTOP (1200px and above) ===== */
 @media (min-width: 1200px) {
     main {

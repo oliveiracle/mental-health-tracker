@@ -1,6 +1,6 @@
 # admin panel configuration
 from django.contrib import admin
-from .models import MoodEntry
+from .models import MoodEntry, Resource
 
 
 # register MoodEntry model in admin panel
@@ -16,3 +16,12 @@ class MoodEntryAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at', 'updated_at')
     # default ordering (newest first)
     ordering = ('-date',)
+
+
+@admin.register(Resource)
+class ResourceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'created_at')
+    list_filter = ('category',)
+    search_fields = ('title', 'description')
+    readonly_fields = ('created_at', 'updated_at')
+    ordering = ('category', 'title')
