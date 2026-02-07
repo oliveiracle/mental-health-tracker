@@ -35,7 +35,9 @@ class MoodEntryForm(forms.ModelForm):
                 "class": "form-control",
                 "rows": "6",
                 "maxlength": "500",
-                "placeholder": "Ex.: Dormi pouco, muito trabalho, mas consegui caminhar.",
+                "placeholder": (
+                    "Ex.: Dormi pouco, muito trabalho, mas consegui caminhar."
+                ),
             }
         ),
     )

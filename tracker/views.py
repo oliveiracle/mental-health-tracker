@@ -29,7 +29,13 @@ def register(request):
 
     # bootstrap styling
     for field in form.fields.values():
-        field.widget.attrs['class'] = 'form-control'
+        existing_classes = field.widget.attrs.get('class', '')
+        if 'form-range' in existing_classes:
+            field.widget.attrs['class'] = existing_classes
+        else:
+            field.widget.attrs['class'] = (
+                f"{existing_classes} form-control".strip()
+            )
 
     return render(request, 'tracker/register.html', {'form': form})
 
@@ -67,7 +73,13 @@ def mood_create(request):
         form = MoodEntryForm()
     
     for field in form.fields.values():
-        field.widget.attrs['class'] = 'form-control'
+        existing_classes = field.widget.attrs.get('class', '')
+        if 'form-range' in existing_classes:
+            field.widget.attrs['class'] = existing_classes
+        else:
+            field.widget.attrs['class'] = (
+                f"{existing_classes} form-control".strip()
+            )
     
     return render(request, 'tracker/mood_form.html', {'form': form})
 
@@ -107,7 +119,9 @@ def mood_trends(request):
     days = [start_date + timedelta(days=offset) for offset in range(7)]
 
     weekly_data = (
-        MoodEntry.objects.filter(user=request.user, date__range=(start_date, today))
+        MoodEntry.objects.filter(
+            user=request.user, date__range=(start_date, today)
+        )
         .values('date')
         .annotate(avg_score=Avg('mood_score'))
     )
@@ -117,7 +131,9 @@ def mood_trends(request):
     scores = [round(avg_map.get(day) or 0, 2) for day in days]
 
     weekly_avg = round(
-        (sum(scores) / len([s for s in scores if s > 0])) if any(s > 0 for s in scores) else 0,
+        (sum(scores) / len([s for s in scores if s > 0]))
+        if any(s > 0 for s in scores)
+        else 0,
         2,
     )
     weekly_max = max(scores) if scores else 0
