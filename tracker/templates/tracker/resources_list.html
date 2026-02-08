@@ -9,7 +9,7 @@
       <div class="resources-hero mb-4">
         <div class="resources-hero-content">
           <div>
-            <h2 class="mb-1">Mental Health Resources</h2>
+            <h2 class="mb-1 resources-title">Mental Health Resources</h2>
             <p class="text-muted mb-0">A calm, supportive space to explore helpful information and trusted links.</p>
           </div>
         </div>
@@ -39,36 +39,194 @@
         </div>
       </div>
 
+      {% for section in sections %}
+        {% if section.key == 'adhd' %}
+          <div class="resource-section">
+            <h4 class="section-title">{{ section.label }} resources</h4>
+            <div class="row g-3">
+              {% for resource in section.items %}
+                <div class="col-md-6">
+                  <div class="resource-card">
+                    <h5 class="resource-title">{{ resource.title }}</h5>
+                    <p class="resource-description">{{ resource.description }}</p>
+                    <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
+                      Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              {% empty %}
+                <div class="col-12">
+                  <div class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <p class="mb-0">No resources added yet for {{ section.label }}.</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
       <div class="support-strip mb-4">
         <div>
           <strong>Gentle reminder:</strong> It’s okay to take this one step at a time. If you’re overwhelmed, focus on one resource today.
         </div>
       </div>
 
-      {% for section in sections %}
-        <div class="resource-section">
-          <h4 class="section-title">{{ section.label }}</h4>
-          <div class="row g-3">
-            {% for resource in section.items %}
-              <div class="col-md-6">
-                <div class="resource-card">
-                  <h5 class="resource-title">{{ resource.title }}</h5>
-                  <p class="resource-description">{{ resource.description }}</p>
-                  <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
-                    Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
-                  </a>
-                </div>
-              </div>
-            {% empty %}
-              <div class="col-12">
-                <div class="empty-state">
-                  <i class="fas fa-info-circle"></i>
-                  <p class="mb-0">No resources added yet for {{ section.label }}.</p>
-                </div>
-              </div>
-            {% endfor %}
+      <div class="resource-intro">
+        <h3 class="mb-3">Depression: understanding and support</h3>
+        <p class="text-muted">Depression can make everyday life feel heavier. You deserve compassion, clarity, and a path to care.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h5>What is depression?</h5>
+            <p>Depression is more than sadness. It can affect mood, sleep, energy, and motivation. It’s a health condition, not a personal failure.</p>
+          </div>
+          <div class="info-card">
+            <h5>How is it diagnosed?</h5>
+            <p>Diagnosis is clinical and based on symptoms, duration, and impact on life. A qualified professional will consider your history and current context.</p>
+          </div>
+          <div class="info-card">
+            <h5>Treatment and support</h5>
+            <p>Care often includes therapy, lifestyle support, and sometimes medication. The best plan is tailored to you.</p>
+          </div>
+          <div class="info-card">
+            <h5>Who can help?</h5>
+            <p>Psychiatrists, psychologists, and primary care clinicians can support you. Community services may also offer groups and guidance.</p>
           </div>
         </div>
+      </div>
+
+      {% for section in sections %}
+        {% if section.key == 'depression' %}
+          <div class="resource-section">
+            <h4 class="section-title">{{ section.label }} resources</h4>
+            <div class="row g-3">
+              {% for resource in section.items %}
+                <div class="col-md-6">
+                  <div class="resource-card">
+                    <h5 class="resource-title">{{ resource.title }}</h5>
+                    <p class="resource-description">{{ resource.description }}</p>
+                    <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
+                      Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              {% empty %}
+                <div class="col-12">
+                  <div class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <p class="mb-0">No resources added yet for {{ section.label }}.</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="resource-intro">
+        <h3 class="mb-3">Anxiety: finding calm and safety</h3>
+        <p class="text-muted">Anxiety can feel overwhelming, but you are not alone. Support exists, and relief is possible.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h5>What is anxiety?</h5>
+            <p>Anxiety involves persistent worry or fear that can affect daily life. It may show up as restlessness, racing thoughts, or physical tension.</p>
+          </div>
+          <div class="info-card">
+            <h5>How is it diagnosed?</h5>
+            <p>A professional assesses symptoms, triggers, and impact. They may use structured interviews or questionnaires to guide care.</p>
+          </div>
+          <div class="info-card">
+            <h5>Treatment and support</h5>
+            <p>Therapy, coping skills, and lifestyle adjustments are common. Medication can help some people. The plan should fit your needs.</p>
+          </div>
+          <div class="info-card">
+            <h5>Who can help?</h5>
+            <p>Psychologists and psychiatrists are key. You can also seek support from primary care and trusted community services.</p>
+          </div>
+        </div>
+      </div>
+
+      {% for section in sections %}
+        {% if section.key == 'anxiety' %}
+          <div class="resource-section">
+            <h4 class="section-title">{{ section.label }} resources</h4>
+            <div class="row g-3">
+              {% for resource in section.items %}
+                <div class="col-md-6">
+                  <div class="resource-card">
+                    <h5 class="resource-title">{{ resource.title }}</h5>
+                    <p class="resource-description">{{ resource.description }}</p>
+                    <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
+                      Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              {% empty %}
+                <div class="col-12">
+                  <div class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <p class="mb-0">No resources added yet for {{ section.label }}.</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <div class="resource-intro">
+        <h3 class="mb-3">General wellbeing: gentle, everyday care</h3>
+        <p class="text-muted">Small, consistent steps can support wellbeing. You don’t have to do it all at once.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h5>Healthy routines</h5>
+            <p>Sleep, movement, nutrition, and hydration can shape mood. Tiny changes are meaningful over time.</p>
+          </div>
+          <div class="info-card">
+            <h5>Stress and burnout</h5>
+            <p>Stress is common, but sustained overload can lead to burnout. Building rest and boundaries helps protect your energy.</p>
+          </div>
+          <div class="info-card">
+            <h5>Connection matters</h5>
+            <p>Supportive relationships help regulate emotions. You can start with one trusted person or community space.</p>
+          </div>
+          <div class="info-card">
+            <h5>When to seek help</h5>
+            <p>If life feels unmanageable or you’re struggling daily, reaching out to a professional is a strong and healthy step.</p>
+          </div>
+        </div>
+      </div>
+
+      {% for section in sections %}
+        {% if section.key == 'general' %}
+          <div class="resource-section">
+            <h4 class="section-title">{{ section.label }} resources</h4>
+            <div class="row g-3">
+              {% for resource in section.items %}
+                <div class="col-md-6">
+                  <div class="resource-card">
+                    <h5 class="resource-title">{{ resource.title }}</h5>
+                    <p class="resource-description">{{ resource.description }}</p>
+                    <a href="{{ resource.link }}" class="resource-link" target="_blank" rel="noopener noreferrer">
+                      Visit resource <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                  </div>
+                </div>
+              {% empty %}
+                <div class="col-12">
+                  <div class="empty-state">
+                    <i class="fas fa-info-circle"></i>
+                    <p class="mb-0">No resources added yet for {{ section.label }}.</p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
