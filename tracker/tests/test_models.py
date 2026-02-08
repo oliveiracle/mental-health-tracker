@@ -35,6 +35,9 @@ class MoodEntryModelTest(TestCase):
 		# test that moods are ordered by date descending
 		mood1 = MoodEntry.objects.create(user=self.user, mood_score=3)
 		mood2 = MoodEntry.objects.create(user=self.user, mood_score=8)
+		# ensure different dates for deterministic ordering
+		mood1.date = mood1.date.replace(day=mood1.date.day - 1)
+		mood1.save(update_fields=['date'])
 		moods = MoodEntry.objects.all()
 		# newest should be first
 		self.assertEqual(moods[0], mood2)
