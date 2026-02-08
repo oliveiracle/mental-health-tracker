@@ -1130,6 +1130,47 @@ footer p {
 }
 
 /* ===== RESOURCES PAGE ===== */
+.resources-page .resources-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: linear-gradient(135deg, rgba(92, 107, 192, 0.12) 0%, rgba(126, 87, 194, 0.08) 100%);
+    border: 1px solid rgba(92, 107, 192, 0.16);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+}
+
+
+
+.resources-page .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.resources-page .support-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: rgba(92, 107, 192, 0.06);
+    border: 1px dashed rgba(92, 107, 192, 0.24);
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    color: #4b4f8c;
+}
+
+.resources-page .support-strip .btn-primary-action {
+    background: linear-gradient(135deg, #7e57c2 0%, #5c6bc0 100%);
+    color: #fff;
+}
+
+.resources-page .support-strip .btn-primary-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(92, 107, 192, 0.25);
+}
+
 .resources-page .resource-section {
     margin-bottom: 2rem;
 }
@@ -1190,6 +1231,46 @@ footer p {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.resources-page .resource-intro {
+    background: rgba(92, 107, 192, 0.06);
+    border: 1px solid rgba(92, 107, 192, 0.18);
+    border-radius: 18px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resources-page .resource-intro h3 {
+    color: #4b4f8c;
+    font-weight: 600;
+}
+
+.resources-page .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.resources-page .info-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 14px;
+    padding: 1rem;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.resources-page .info-card h5 {
+    color: #2563eb;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.resources-page .info-card p {
+    color: #546e7a;
+    margin-bottom: 0;
+    font-size: 0.95rem;
 }
 
 /* ===== GLOBAL BUTTON SYSTEM ===== */

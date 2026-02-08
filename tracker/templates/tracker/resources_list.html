@@ -6,14 +6,43 @@
 <div class="row resources-page">
   <div class="col-12">
     <div class="glass-card">
-      <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
-        <div>
-          <h2 class="mb-1"><i class="fas fa-book-medical"></i> Mental Health Resources</h2>
-          <p class="text-muted mb-0">Curated support links for ADHD, depression, anxiety, and general wellbeing.</p>
+      <div class="resources-hero mb-4">
+        <div class="resources-hero-content">
+          <div>
+            <h2 class="mb-1">Mental Health Resources</h2>
+            <p class="text-muted mb-0">A calm, supportive space to explore helpful information and trusted links.</p>
+          </div>
         </div>
-        <a href="{% url 'mood_list' %}" class="btn btn-secondary-action">
-          <i class="fas fa-arrow-left"></i> Back to My Moods
-        </a>
+      </div>
+
+      <div class="resource-intro">
+        <h3 class="mb-3">ADHD: information with care</h3>
+        <p class="text-muted">You are not alone. This space is here to inform with clarity and offer support. If anything here resonates, take a calm breath — support and care are possible.</p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h5>What is ADHD?</h5>
+            <p>ADHD is a neurodevelopmental condition that can affect attention, impulsivity, and organization. Everyone experiences it differently, with strengths and challenges. With the right support, quality of life and wellbeing can improve.</p>
+          </div>
+          <div class="info-card">
+            <h5>How is it diagnosed?</h5>
+            <p>Diagnosis is clinical and performed by qualified health professionals. It includes a detailed interview, life history, and evaluation of symptoms across contexts, sometimes with standardized questionnaires. There is no single test that “proves” ADHD.</p>
+          </div>
+          <div class="info-card">
+            <h5>Treatment and support</h5>
+            <p>Care may include psychoeducation, psychotherapy, organization strategies, environmental adjustments, and in some cases, medication. The plan should be individualized and respectful of your needs.</p>
+          </div>
+          <div class="info-card">
+            <h5>Who can help?</h5>
+            <p>Psychiatrists and psychologists are core professionals. In many cases, a multidisciplinary team also helps (e.g., neurology, occupational therapy, speech therapy). You deserve respectful, ongoing care.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="support-strip mb-4">
+        <div>
+          <strong>Gentle reminder:</strong> It’s okay to take this one step at a time. If you’re overwhelmed, focus on one resource today.
+        </div>
       </div>
 
       {% for section in sections %}
