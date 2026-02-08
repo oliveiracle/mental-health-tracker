@@ -65,6 +65,15 @@ main .container {
     background: linear-gradient(135deg, var(--primary-700) 0%, var(--accent-600) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+.navbar-brand .brand-logo {
+    width: 36px;
+    height: 36px;
+    margin-right: 10px;
+}
+.navbar-brand span {
+    display: inline-flex;
+    align-items: center;
+}
     background-clip: text;
     transition: opacity 0.3s;
     white-space: nowrap;
@@ -1173,6 +1182,37 @@ footer p {
 
 .resources-page .resource-section {
     margin-bottom: 2rem;
+}
+
+.resources-page .resources-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 18px;
+    background: rgba(92, 107, 192, 0.06);
+    border: 1px solid rgba(92, 107, 192, 0.18);
+}
+
+.resources-page .resources-footer h4 {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.resources-page .resource-links {
+    margin: 0.75rem 0 0;
+    padding-left: 1.1rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.resources-page .resource-links a {
+    color: #5c6bc0;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.resources-page .resource-links a:hover {
+    color: #3949ab;
+    text-decoration: underline;
 }
 
 .resources-page .section-title {
