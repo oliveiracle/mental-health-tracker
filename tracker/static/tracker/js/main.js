@@ -1,6 +1,3 @@
-/* main.js - interactive features for mental health tracker */
-
-// initialize interactive elements when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeNavbarHoverEffects();
     initializeCardHoverEffects();
@@ -9,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMoodTrendsChart();
 });
 
-// navbar button hover effects
 function initializeNavbarHoverEffects() {
     const navButtons = document.querySelectorAll('.nav-btn-primary, .nav-btn-secondary');
     

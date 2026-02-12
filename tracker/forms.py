@@ -12,7 +12,6 @@ class RegisterForm(UserCreationForm):
         fields = ("username", "email", "password1", "password2")
 
 
-# form for mood entry
 class MoodEntryForm(forms.ModelForm):
     mood_score = forms.IntegerField(
         min_value=0,
@@ -36,7 +35,8 @@ class MoodEntryForm(forms.ModelForm):
                 "rows": "6",
                 "maxlength": "500",
                 "placeholder": (
-                    "Ex.: Dormi pouco, muito trabalho, mas consegui caminhar."
+                    "E.g.: Slept little, lots of work, "
+                    "but managed to go for a walk."
                 ),
             }
         ),

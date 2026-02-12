@@ -38,7 +38,7 @@ class MoodCreateViewTest(TestCase):
 
     def test_can_create_mood(self):
         self.client.login(username='testuser', password='testpass123')
-        response = self.client.post(reverse('mood_create'), {
+        self.client.post(reverse('mood_create'), {
             'mood_score': 7,
             'notes': 'Test note'
         })

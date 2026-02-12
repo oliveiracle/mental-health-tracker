@@ -48,10 +48,8 @@ def logout_view(request):
 
 @login_required
 def mood_list(request):
-    # get all moods for current user, ordered by date (newest first)
     all_moods = MoodEntry.objects.filter(user=request.user)
     
-    # set up paginator: 10 moods per page
     paginator = Paginator(all_moods, 10)
     page_number = request.GET.get('page')
     moods = paginator.get_page(page_number)
