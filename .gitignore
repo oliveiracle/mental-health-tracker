@@ -1,3 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code history
+.history/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Virtual environment
+.env
+.venv/
+
+# SQLite (apenas para produção, se desejar)
+# db.sqlite3
 # Python
 *.py[cod]
 *$py.class
