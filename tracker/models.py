@@ -1,11 +1,14 @@
-# models for database tables
+"""
+Models for database tables: MoodEntry (user mood tracking) and Resource (helpful resources).
+"""
 from django.db import models
 from django.contrib.auth.models import User
 
-
-# model for storing mood entries
 class MoodEntry(models.Model):
-    # choices for mood score (0 to 10)
+    """
+    Stores a single mood entry for a user, including mood score, notes, and timestamps.
+    """
+    # Choices for mood score (0 to 10)
     MOOD_CHOICES = [
         (0, 'Very Low'),
         (1, 'Low'),
@@ -19,37 +22,31 @@ class MoodEntry(models.Model):
         (9, 'Excellent'),
         (10, 'Outstanding'),
     ]
-    
-    # link to user (each entry belongs to a user)
-    # delete entries if user deleted
+
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE,
+        on_delete=models.CASCADE,  # Delete mood entries if user is deleted
         related_name='mood_entries'
     )
-    # automatically set date when created
-    date = models.DateField(auto_now_add=True)
-    # mood score 0-10
-    mood_score = models.IntegerField(choices=MOOD_CHOICES)
-    # optional notes
-    notes = models.TextField(blank=True, null=True, max_length=500)
-    # when entry was created
-    created_at = models.DateTimeField(auto_now_add=True)
-    # when entry was last updated
-    updated_at = models.DateTimeField(auto_now=True)
-    
+    date = models.DateField(auto_now_add=True)  # Date of the entry
+    mood_score = models.IntegerField(choices=MOOD_CHOICES)  # Mood score (0-10)
+    notes = models.TextField(blank=True, null=True, max_length=500)  # Optional notes (max 500 chars)
+    created_at = models.DateTimeField(auto_now_add=True)  # When entry was created
+    updated_at = models.DateTimeField(auto_now=True)      # When entry was last updated
+
     class Meta:
-        ordering = ['-date']  # show newest entries first
-        verbose_name_plural = 'Mood Entries'  # proper plural name
-    
-    # string representation for admin panel
+        ordering = ['-date']  # Show newest entries first
+        verbose_name_plural = 'Mood Entries'
+
     def __str__(self):
-        return (
-            f"{self.user.username} - {self.date} - Score: {self.mood_score}"
-        )
+        """String representation for admin panel and debugging."""
+        return f"{self.user.username} - {self.date} - Score: {self.mood_score}"
 
 
 class Resource(models.Model):
+    """
+    Stores a resource (article, link, etc.) for mental health support.
+    """
     CATEGORY_CHOICES = [
         ("adhd", "ADHD"),
         ("depression", "Depression"),
@@ -57,10 +54,10 @@ class Resource(models.Model):
         ("general", "General"),
     ]
 
-    title = models.CharField(max_length=120)
-    description = models.TextField()
-    link = models.URLField()
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    title = models.CharField(max_length=120)  # Resource title
+    description = models.TextField()           # Short description
+    link = models.URLField()                  # External link
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)  # Resource category
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -69,4 +66,5 @@ class Resource(models.Model):
         verbose_name_plural = "Resources"
 
     def __str__(self):
+        """String representation for admin panel and debugging."""
         return self.title
