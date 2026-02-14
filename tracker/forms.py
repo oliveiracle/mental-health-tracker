@@ -11,11 +11,21 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ("username", "email", "password1", "password2")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in self.fields:
+            self.fields[field_name].widget.attrs.update({
+                "class": "form-control",
+            })
+            if hasattr(self.fields[field_name].widget, 'attrs'):
+                self.fields[field_name].widget.attrs.pop('aria-describedby', None)
+
 
 class MoodEntryForm(forms.ModelForm):
     mood_score = forms.IntegerField(
         min_value=0,
         max_value=10,
+        required=False,
         widget=forms.NumberInput(
             attrs={
                 "type": "range",
@@ -29,6 +39,7 @@ class MoodEntryForm(forms.ModelForm):
     )
     notes = forms.CharField(
         required=False,
+        max_length=500,
         widget=forms.Textarea(
             attrs={
                 "class": "form-control",

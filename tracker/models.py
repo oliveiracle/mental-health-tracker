@@ -32,7 +32,7 @@ class MoodEntry(models.Model):
     # mood score 0-10
     mood_score = models.IntegerField(choices=MOOD_CHOICES)
     # optional notes
-    notes = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True, max_length=500)
     # when entry was created
     created_at = models.DateTimeField(auto_now_add=True)
     # when entry was last updated
