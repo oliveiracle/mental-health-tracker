@@ -1,3 +1,6 @@
+"""
+Forms for user registration and mood entry, with Bootstrap styling and helpful comments.
+"""
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -5,6 +8,10 @@ from .models import MoodEntry
 
 
 class RegisterForm(UserCreationForm):
+    """
+    Custom user registration form extending Django's UserCreationForm.
+    Adds an email field and applies Bootstrap classes for styling.
+    """
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -13,27 +20,33 @@ class RegisterForm(UserCreationForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # Apply Bootstrap 'form-control' class to all fields for consistent styling
         for field_name in self.fields:
             self.fields[field_name].widget.attrs.update({
                 "class": "form-control",
             })
+            # Remove 'aria-describedby' if present to avoid duplicate hints
             if hasattr(self.fields[field_name].widget, 'attrs'):
                 self.fields[field_name].widget.attrs.pop('aria-describedby', None)
 
 
 class MoodEntryForm(forms.ModelForm):
+    """
+    Form for creating or editing a MoodEntry.
+    Uses a range slider for mood_score and a textarea for notes, both styled with Bootstrap.
+    """
     mood_score = forms.IntegerField(
         min_value=0,
         max_value=10,
         required=False,
         widget=forms.NumberInput(
             attrs={
-                "type": "range",
+                "type": "range",      # HTML5 range slider
                 "min": "0",
                 "max": "10",
                 "step": "1",
-                "class": "form-range",
-                "value": "5",
+                "class": "form-range", # Bootstrap slider class
+                "value": "5",         # Default value
             }
         ),
     )
@@ -42,7 +55,7 @@ class MoodEntryForm(forms.ModelForm):
         max_length=500,
         widget=forms.Textarea(
             attrs={
-                "class": "form-control",
+                "class": "form-control", # Bootstrap textarea class
                 "rows": "6",
                 "maxlength": "500",
                 "placeholder": (
