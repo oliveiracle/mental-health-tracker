@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function() {
     initializeNavbarHoverEffects();
     initializeCardHoverEffects();
     initializeButtonHoverEffects();
@@ -7,97 +7,118 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeNavbarHoverEffects() {
-    const navButtons = document.querySelectorAll('.nav-btn-primary, .nav-btn-secondary');
-    
-    navButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            if (this.classList.contains('nav-btn-primary')) {
-                this.style.transform = 'translateY(-2px)';
-                this.style.boxShadow = '0 6px 16px rgba(92, 107, 192, 0.35)';
+    const navButtons = document.querySelectorAll(
+        ".nav-btn-primary, .nav-btn-secondary"
+    );
+
+    navButtons.forEach((button) => {
+        button.addEventListener("mouseenter", function() {
+            if (this.classList.contains("nav-btn-primary")) {
+                this.style.transform = "translateY(-2px)";
+                this.style.boxShadow =
+                    "0 6px 16px rgba(92, 107, 192, 0.35)";
             }
         });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            if (this.classList.contains('nav-btn-primary')) {
-                this.style.boxShadow = '0 4px 12px rgba(92, 107, 192, 0.25)';
+
+        button.addEventListener("mouseleave", function() {
+            this.style.transform = "translateY(0)";
+            if (this.classList.contains("nav-btn-primary")) {
+                this.style.boxShadow =
+                    "0 4px 12px rgba(92, 107, 192, 0.25)";
             }
         });
     });
-    
-    // sign in link hover effect
-    const signInLink = document.querySelector('.nav-link-primary');
+
+    const signInLink = document.querySelector(".nav-link-primary");
     if (signInLink) {
-        signInLink.addEventListener('mouseenter', function() {
-            this.style.color = '#7e57c2';
+        signInLink.addEventListener("mouseenter", function() {
+            this.style.color = "#7e57c2";
         });
-        
-        signInLink.addEventListener('mouseleave', function() {
-            this.style.color = '#5c6bc0';
+
+        signInLink.addEventListener("mouseleave", function() {
+            this.style.color = "#5c6bc0";
         });
     }
 }
 
-// home page feature cards hover effects
 function initializeCardHoverEffects() {
-    const cards = document.querySelectorAll('.feature-card');
-    
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
-            this.style.boxShadow = '0 12px 24px rgba(92, 107, 192, 0.15)';
+    const cards = document.querySelectorAll(".feature-card");
+
+    cards.forEach((card) => {
+        card.addEventListener("mouseenter", function() {
+            this.style.transform = "translateY(-8px)";
+            this.style.boxShadow =
+                "0 12px 24px rgba(92, 107, 192, 0.15)";
         });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.08)';
+
+        card.addEventListener("mouseleave", function() {
+            this.style.transform = "translateY(0)";
+            this.style.boxShadow =
+                "0 4px 12px rgba(0,0,0,0.08)";
         });
     });
 }
 
-// button hover effects for mood actions
 function initializeButtonHoverEffects() {
-    const primaryButtons = document.querySelectorAll('.btn-primary-action');
-    const secondaryButtons = document.querySelectorAll('.btn-secondary-action');
-    
-    primaryButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            this.style.boxShadow = '0 4px 12px rgba(67, 160, 71, 0.4)';
+    const primaryButtons = document.querySelectorAll(
+        ".btn-primary-action"
+    );
+    const secondaryButtons = document.querySelectorAll(
+        ".btn-secondary-action"
+    );
+
+    primaryButtons.forEach((button) => {
+        button.addEventListener("mouseenter", function() {
+            this.style.transform = "translateY(-2px)";
+            this.style.boxShadow =
+                "0 4px 12px rgba(67, 160, 71, 0.4)";
         });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 2px 8px rgba(67, 160, 71, 0.3)';
+
+        button.addEventListener("mouseleave", function() {
+            this.style.transform = "translateY(0)";
+            this.style.boxShadow =
+                "0 2px 8px rgba(67, 160, 71, 0.3)";
         });
     });
-    
-    secondaryButtons.forEach(button => {
-        button.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-2px)';
-            if (this.classList.contains('btn-update')) {
-                this.style.boxShadow = '0 4px 10px rgba(149, 117, 205, 0.4)';
-            } else if (this.classList.contains('btn-archive')) {
-                this.style.boxShadow = '0 4px 10px rgba(255, 183, 77, 0.4)';
+
+    secondaryButtons.forEach((button) => {
+        button.addEventListener("mouseenter", function() {
+            this.style.transform = "translateY(-2px)";
+            if (this.classList.contains("btn-update")) {
+                this.style.boxShadow =
+                    "0 4px 10px rgba(149, 117, 205, 0.4)";
+            } else if (this.classList.contains("btn-archive")) {
+                this.style.boxShadow =
+                    "0 4px 10px rgba(255, 183, 77, 0.4)";
             }
         });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            if (this.classList.contains('btn-update')) {
-                this.style.boxShadow = '0 2px 6px rgba(149, 117, 205, 0.3)';
-            } else if (this.classList.contains('btn-archive')) {
-                this.style.boxShadow = '0 2px 6px rgba(255, 183, 77, 0.3)';
+
+        button.addEventListener("mouseleave", function() {
+            this.style.transform = "translateY(0)";
+            if (this.classList.contains("btn-update")) {
+                this.style.boxShadow =
+                    "0 2px 6px rgba(149, 117, 205, 0.3)";
+            } else if (this.classList.contains("btn-archive")) {
+                this.style.boxShadow =
+                    "0 2px 6px rgba(255, 183, 77, 0.3)";
             }
         });
     });
 }
 
 function initializeMoodFormInteractions() {
-    const moodField = document.querySelector('.mood-form-page .form-range');
-    const scoreValue = document.querySelector('.mood-form-page #score-value');
-    const notesField = document.querySelector('.mood-form-page textarea[name="notes"]');
-    const counter = document.querySelector('.mood-form-page #notes-counter');
+    const moodField = document.querySelector(
+        ".mood-form-page .form-range"
+    );
+    const scoreValue = document.querySelector(
+        ".mood-form-page #score-value"
+    );
+    const notesField = document.querySelector(
+        ".mood-form-page textarea[name=\"notes\"]"
+    );
+    const counter = document.querySelector(
+        ".mood-form-page #notes-counter"
+    );
 
     if (moodField && scoreValue) {
         const lerp = (a, b, t) => Math.round(a + (b - a) * t);
@@ -114,21 +135,24 @@ function initializeMoodFormInteractions() {
             const color = colorForValue(value);
             scoreValue.textContent = value;
             scoreValue.style.color = color;
-            moodField.style.setProperty('--mood-color', color);
+            moodField.style.setProperty("--mood-color", color);
         };
 
-        moodField.addEventListener('input', updateScore);
+        moodField.addEventListener("input", updateScore);
         updateScore();
     }
 
     if (notesField && counter) {
         const updateCount = () => {
-            const max = notesField.getAttribute('maxlength');
+            const max = notesField.getAttribute("maxlength");
             const current = notesField.value.length;
-            counter.textContent = max ? `${current}/${max}` : `${current} chars`;
+            const display = max
+                ? `${current}/${max}`
+                : `${current} chars`;
+            counter.textContent = display;
         };
 
-        notesField.addEventListener('input', updateCount);
+        notesField.addEventListener("input", updateCount);
         updateCount();
     }
 }
@@ -140,45 +164,48 @@ function loadChartJs() {
             return;
         }
 
-        const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/chart.js";
         script.onload = () => resolve();
-        script.onerror = () => reject(new Error('Failed to load Chart.js'));
+        script.onerror = () => reject(
+            new Error("Failed to load Chart.js")
+        );
         document.head.appendChild(script);
     });
 }
 
 function initializeMoodTrendsChart() {
-    const chartElement = document.getElementById('moodChart');
+    const chartElement = document.getElementById("moodChart");
     if (!chartElement) return;
 
-    const labelsRaw = chartElement.dataset.labels || '';
-    const scoresRaw = chartElement.dataset.scores || '';
-    const labels = labelsRaw.split(',').filter(Boolean);
+    const labelsRaw = chartElement.dataset.labels || "";
+    const scoresRaw = chartElement.dataset.scores || "";
+    const labels = labelsRaw.split(",").filter(Boolean);
     const scores = scoresRaw
-        .split(',')
+        .split(",")
         .filter((value) => value.length)
         .map((value) => Number(value));
 
     loadChartJs()
         .then(() => {
-            const ctx = chartElement.getContext('2d');
+            const ctx = chartElement.getContext("2d");
             if (!ctx) return;
 
             new Chart(ctx, {
-                type: 'line',
+                type: "line",
                 data: {
                     labels,
                     datasets: [
                         {
-                            label: 'Mood Score',
+                            label: "Mood Score",
                             data: scores,
-                            borderColor: '#5c6bc0',
-                            backgroundColor: 'rgba(92, 107, 192, 0.18)',
+                            borderColor: "#5c6bc0",
+                            backgroundColor:
+                                "rgba(92, 107, 192, 0.18)",
                             fill: true,
                             tension: 0.35,
                             pointRadius: 4,
-                            pointBackgroundColor: '#5c6bc0',
+                            pointBackgroundColor: "#5c6bc0",
                         },
                     ],
                 },
