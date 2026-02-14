@@ -1,234 +1,326 @@
-document.addEventListener("DOMContentLoaded", function() {
-    initializeNavbarHoverEffects();
-    initializeCardHoverEffects();
-    initializeButtonHoverEffects();
-    initializeMoodFormInteractions();
-    initializeMoodTrendsChart();
-});
+/*jslint browser: true */
+/*global window, document, Chart, Promise */
 
-function initializeNavbarHoverEffects() {
-    const navButtons = document.querySelectorAll(
-        ".nav-btn-primary, .nav-btn-secondary"
-    );
+(function () {
+    "use strict";
 
-    navButtons.forEach((button) => {
-        button.addEventListener("mouseenter", function() {
-            if (this.classList.contains("nav-btn-primary")) {
-                this.style.transform = "translateY(-2px)";
-                this.style.boxShadow =
-                    "0 6px 16px rgba(92, 107, 192, 0.35)";
-            }
+    /**
+     * Adds hover effects to navigation buttons, creating a subtle lift and shadow
+     * effect to provide visual feedback on interaction.
+     */
+    function initializeNavbarHoverEffects() {
+        var navButtons = document.querySelectorAll(
+            ".nav-btn-primary, .nav-btn-secondary"
+        );
+        var signInLink = document.querySelector(
+            ".nav-link-primary"
+        );
+
+        navButtons.forEach(function (button) {
+            button.addEventListener("mouseenter", function () {
+                if (button.classList.contains("nav-btn-primary")) {
+                    button.style.transform = "translateY(-2px)";
+                    button.style.boxShadow = (
+                        "0 6px 16px rgba(92, 107, 192, 0.35)"
+                    );
+                }
+            });
+
+            button.addEventListener("mouseleave", function () {
+                button.style.transform = "translateY(0)";
+                if (button.classList.contains("nav-btn-primary")) {
+                    button.style.boxShadow = (
+                        "0 4px 12px rgba(92, 107, 192, 0.25)"
+                    );
+                }
+            });
         });
 
-        button.addEventListener("mouseleave", function() {
-            this.style.transform = "translateY(0)";
-            if (this.classList.contains("nav-btn-primary")) {
-                this.style.boxShadow =
-                    "0 4px 12px rgba(92, 107, 192, 0.25)";
-            }
-        });
-    });
+        if (signInLink) {
+            signInLink.addEventListener("mouseenter", function () {
+                signInLink.style.color = "#7e57c2";
+            });
 
-    const signInLink = document.querySelector(".nav-link-primary");
-    if (signInLink) {
-        signInLink.addEventListener("mouseenter", function() {
-            this.style.color = "#7e57c2";
-        });
-
-        signInLink.addEventListener("mouseleave", function() {
-            this.style.color = "#5c6bc0";
-        });
-    }
-}
-
-function initializeCardHoverEffects() {
-    const cards = document.querySelectorAll(".feature-card");
-
-    cards.forEach((card) => {
-        card.addEventListener("mouseenter", function() {
-            this.style.transform = "translateY(-8px)";
-            this.style.boxShadow =
-                "0 12px 24px rgba(92, 107, 192, 0.15)";
-        });
-
-        card.addEventListener("mouseleave", function() {
-            this.style.transform = "translateY(0)";
-            this.style.boxShadow =
-                "0 4px 12px rgba(0,0,0,0.08)";
-        });
-    });
-}
-
-function initializeButtonHoverEffects() {
-    const primaryButtons = document.querySelectorAll(
-        ".btn-primary-action"
-    );
-    const secondaryButtons = document.querySelectorAll(
-        ".btn-secondary-action"
-    );
-
-    primaryButtons.forEach((button) => {
-        button.addEventListener("mouseenter", function() {
-            this.style.transform = "translateY(-2px)";
-            this.style.boxShadow =
-                "0 4px 12px rgba(67, 160, 71, 0.4)";
-        });
-
-        button.addEventListener("mouseleave", function() {
-            this.style.transform = "translateY(0)";
-            this.style.boxShadow =
-                "0 2px 8px rgba(67, 160, 71, 0.3)";
-        });
-    });
-
-    secondaryButtons.forEach((button) => {
-        button.addEventListener("mouseenter", function() {
-            this.style.transform = "translateY(-2px)";
-            if (this.classList.contains("btn-update")) {
-                this.style.boxShadow =
-                    "0 4px 10px rgba(149, 117, 205, 0.4)";
-            } else if (this.classList.contains("btn-archive")) {
-                this.style.boxShadow =
-                    "0 4px 10px rgba(255, 183, 77, 0.4)";
-            }
-        });
-
-        button.addEventListener("mouseleave", function() {
-            this.style.transform = "translateY(0)";
-            if (this.classList.contains("btn-update")) {
-                this.style.boxShadow =
-                    "0 2px 6px rgba(149, 117, 205, 0.3)";
-            } else if (this.classList.contains("btn-archive")) {
-                this.style.boxShadow =
-                    "0 2px 6px rgba(255, 183, 77, 0.3)";
-            }
-        });
-    });
-}
-
-function initializeMoodFormInteractions() {
-    const moodField = document.querySelector(
-        ".mood-form-page .form-range"
-    );
-    const scoreValue = document.querySelector(
-        ".mood-form-page #score-value"
-    );
-    const notesField = document.querySelector(
-        ".mood-form-page textarea[name=\"notes\"]"
-    );
-    const counter = document.querySelector(
-        ".mood-form-page #notes-counter"
-    );
-
-    if (moodField && scoreValue) {
-        const lerp = (a, b, t) => Math.round(a + (b - a) * t);
-        const colorForValue = (value) => {
-            const t = value / 10;
-            const r = lerp(239, 30, t);
-            const g = lerp(68, 58, t);
-            const b = lerp(68, 138, t);
-            return `rgb(${r}, ${g}, ${b})`;
-        };
-
-        const updateScore = () => {
-            const value = Number(moodField.value || 5);
-            const color = colorForValue(value);
-            scoreValue.textContent = value;
-            scoreValue.style.color = color;
-            moodField.style.setProperty("--mood-color", color);
-        };
-
-        moodField.addEventListener("input", updateScore);
-        updateScore();
+            signInLink.addEventListener("mouseleave", function () {
+                signInLink.style.color = "#5c6bc0";
+            });
+        }
     }
 
-    if (notesField && counter) {
-        const updateCount = () => {
-            const max = notesField.getAttribute("maxlength");
-            const current = notesField.value.length;
-            const display = max
-                ? `${current}/${max}`
-                : `${current} chars`;
-            counter.textContent = display;
-        };
+    /**
+     * Applies a lift-and-shadow hover effect to feature cards on the homepage,
+     * making them feel more interactive and engaging.
+     */
+    function initializeCardHoverEffects() {
+        var cards = document.querySelectorAll(".feature-card");
 
-        notesField.addEventListener("input", updateCount);
-        updateCount();
+        cards.forEach(function (card) {
+            card.addEventListener("mouseenter", function () {
+                card.style.transform = "translateY(-8px)";
+                card.style.boxShadow = (
+                    "0 12px 24px rgba(92, 107, 192, 0.15)"
+                );
+            });
+
+            card.addEventListener("mouseleave", function () {
+                card.style.transform = "translateY(0)";
+                card.style.boxShadow = (
+                    "0 4px 12px rgba(0,0,0,0.08)"
+                );
+            });
+        });
     }
-}
 
-function loadChartJs() {
-    return new Promise((resolve, reject) => {
-        if (window.Chart) {
-            resolve();
+    /**
+     * Attaches hover effects to primary and secondary action buttons, providing
+     * visual feedback through transformations and shadows.
+     */
+    function initializeButtonHoverEffects() {
+        var primaryButtons = document.querySelectorAll(
+            ".btn-primary-action"
+        );
+        var secondaryButtons = document.querySelectorAll(
+            ".btn-secondary-action"
+        );
+
+        primaryButtons.forEach(function (button) {
+            button.addEventListener("mouseenter", function () {
+                button.style.transform = "translateY(-2px)";
+                button.style.boxShadow = (
+                    "0 4px 12px rgba(67, 160, 71, 0.4)"
+                );
+            });
+
+            button.addEventListener("mouseleave", function () {
+                button.style.transform = "translateY(0)";
+                button.style.boxShadow = (
+                    "0 2px 8px rgba(67, 160, 71, 0.3)"
+                );
+            });
+        });
+
+        secondaryButtons.forEach(function (button) {
+            button.addEventListener("mouseenter", function () {
+                button.style.transform = "translateY(-2px)";
+                if (button.classList.contains("btn-update")) {
+                    button.style.boxShadow = (
+                        "0 4px 10px rgba(149, 117, 205, 0.4)"
+                    );
+                } else if (
+                    button.classList.contains("btn-archive")
+                ) {
+                    button.style.boxShadow = (
+                        "0 4px 10px rgba(255, 183, 77, 0.4)"
+                    );
+                }
+            });
+
+            button.addEventListener("mouseleave", function () {
+                button.style.transform = "translateY(0)";
+                if (button.classList.contains("btn-update")) {
+                    button.style.boxShadow = (
+                        "0 2px 6px rgba(149, 117, 205, 0.3)"
+                    );
+                } else if (
+                    button.classList.contains("btn-archive")
+                ) {
+                    button.style.boxShadow = (
+                        "0 2px 6px rgba(255, 183, 77, 0.3)"
+                    );
+                }
+            });
+        });
+    }
+
+    /**
+     * Manages interactions within the mood entry form, including the dynamic
+     * color change of the mood slider and the character counter for the notes field.
+     */
+    function initializeMoodFormInteractions() {
+        var moodField = document.querySelector(
+            ".mood-form-page .form-range"
+        );
+        var scoreValue = document.querySelector(
+            ".mood-form-page #score-value"
+        );
+        var notesField = document.querySelector(
+            ".mood-form-page textarea[name='notes']"
+        );
+        var counter = document.querySelector(
+            ".mood-form-page #notes-counter"
+        );
+        var lerp;
+        var colorForValue;
+        var updateScore;
+        var updateCount;
+
+        if (moodField && scoreValue) {
+            lerp = function (a, b, t) {
+                return Math.round(a + (b - a) * t);
+            };
+
+            colorForValue = function (value) {
+                var t = value / 10;
+                var r = lerp(239, 30, t);
+                var g = lerp(68, 58, t);
+                var b = lerp(68, 138, t);
+                return (
+                    "rgb(" + r + ", " + g + ", " + b + ")"
+                );
+            };
+
+            updateScore = function () {
+                var value = Number(moodField.value || 5);
+                var color = colorForValue(value);
+                scoreValue.textContent = value;
+                scoreValue.style.color = color;
+                moodField.style.setProperty(
+                    "--mood-color",
+                    color
+                );
+            };
+
+            moodField.addEventListener("input", updateScore);
+            updateScore();
+        }
+
+        if (notesField && counter) {
+            updateCount = function () {
+                var max = notesField.getAttribute("maxlength");
+                var current = notesField.value.length;
+                counter.textContent = (
+                    max
+                    ? current + "/" + max
+                    : current + " chars"
+                );
+            };
+
+            notesField.addEventListener("input", updateCount);
+            updateCount();
+        }
+    }
+
+    /**
+     * Asynchronously loads the Chart.js library if it's not already present,
+     * ensuring the chart can be rendered without blocking the page load.
+     * @returns {Promise} A promise that resolves when Chart.js is loaded.
+     */
+    function loadChartJs() {
+        return new Promise(function (resolve, reject) {
+            var script;
+
+            if (window.Chart) {
+                resolve();
+                return;
+            }
+
+            script = document.createElement("script");
+            script.src = (
+                "https://cdn.jsdelivr.net/npm/chart.js"
+            );
+            script.onload = function () {
+                resolve();
+            };
+            script.onerror = function () {
+                reject(new Error("Failed to load Chart.js"));
+            };
+            document.head.appendChild(script);
+        });
+    }
+
+    /**
+     * Creates and configures a new Chart.js instance for the mood trends.
+     * @param {CanvasRenderingContext2D} ctx - The rendering context of the canvas.
+     * @param {string[]} labels - The labels for the x-axis (e.g., dates).
+     * @param {number[]} scores - The mood scores for the y-axis.
+     * @returns {Chart} The new Chart.js instance.
+     */
+    function createMoodChart(ctx, labels, scores) {
+        return new Chart(ctx, {
+            data: {
+                datasets: [
+                    {
+                        backgroundColor: (
+                            "rgba(92, 107, 192, 0.18)"
+                        ),
+                        borderColor: "#5c6bc0",
+                        data: scores,
+                        fill: true,
+                        label: "Mood Score",
+                        pointBackgroundColor: "#5c6bc0",
+                        pointRadius: 4,
+                        tension: 0.35
+                    }
+                ],
+                labels
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                responsive: true,
+                scales: {
+                    y: {
+                        max: 10,
+                        min: 0,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            },
+            type: "line"
+        });
+    }
+
+    /**
+     * Initializes and renders the mood trends chart. It fetches data from the
+     * DOM, loads Chart.js if needed, and then creates the chart.
+     */
+    function initializeMoodTrendsChart() {
+        var chartElement = document.getElementById("moodChart");
+        var labelsRaw;
+        var scoresRaw;
+        var labels;
+        var scores;
+
+        if (!chartElement) {
             return;
         }
 
-        const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/chart.js";
-        script.onload = () => resolve();
-        script.onerror = () => reject(
-            new Error("Failed to load Chart.js")
-        );
-        document.head.appendChild(script);
-    });
-}
-
-function initializeMoodTrendsChart() {
-    const chartElement = document.getElementById("moodChart");
-    if (!chartElement) return;
-
-    const labelsRaw = chartElement.dataset.labels || "";
-    const scoresRaw = chartElement.dataset.scores || "";
-    const labels = labelsRaw.split(",").filter(Boolean);
-    const scores = scoresRaw
-        .split(",")
-        .filter((value) => value.length)
-        .map((value) => Number(value));
-
-    loadChartJs()
-        .then(() => {
-            const ctx = chartElement.getContext("2d");
-            if (!ctx) return;
-
-            new Chart(ctx, {
-                type: "line",
-                data: {
-                    labels,
-                    datasets: [
-                        {
-                            label: "Mood Score",
-                            data: scores,
-                            borderColor: "#5c6bc0",
-                            backgroundColor:
-                                "rgba(92, 107, 192, 0.18)",
-                            fill: true,
-                            tension: 0.35,
-                            pointRadius: 4,
-                            pointBackgroundColor: "#5c6bc0",
-                        },
-                    ],
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            min: 0,
-                            max: 10,
-                            ticks: {
-                                stepSize: 1,
-                            },
-                        },
-                    },
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                    },
-                },
-            });
-        })
-        .catch(() => {
-            // Silently ignore chart errors to avoid blocking the page.
+        labelsRaw = chartElement.dataset.labels || "";
+        scoresRaw = chartElement.dataset.scores || "";
+        labels = labelsRaw.split(",").filter(Boolean);
+        scores = scoresRaw.split(",").filter(function (value) {
+            return value.length > 0;
+        }).map(function (value) {
+            return Number(value);
         });
-}
+
+        loadChartJs().then(function () {
+            var ctx = chartElement.getContext("2d");
+            if (!ctx) {
+                return;
+            }
+            createMoodChart(ctx, labels, scores);
+        }).catch(function () {
+            return;
+        });
+    }
+
+    /**
+     * Main entry point. Initializes all interactive components and event
+     * listeners after the DOM is fully loaded.
+     */
+    function main() {
+        initializeNavbarHoverEffects();
+        initializeCardHoverEffects();
+        initializeButtonHoverEffects();
+        initializeMoodFormInteractions();
+        initializeMoodTrendsChart();
+    }
+
+    document.addEventListener("DOMContentLoaded", main);
+}());
