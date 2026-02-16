@@ -26,10 +26,10 @@
           <!-- username field -->
           <div class="mb-3">
             <label for="{{ form.username.id_for_label }}" class="form-label fw-bold">Username</label>
-            {{ form.username }}  <!-- django will render the input field here -->
+            <input type="text" name="username" maxlength="150" class="form-control" required id="{{ form.username.id_for_label }}" value="{{ form.username.value|default:'' }}">
             {% if form.username.errors %}
             <div class="text-danger mt-1">
-              {{ form.username.errors }}  <!-- show error if username is wrong -->
+              {{ form.username.errors }}
             </div>
             {% endif %}
             <div class="form-text">
@@ -40,7 +40,7 @@
           <!-- email field (not required) -->
           <div class="mb-3">
               <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">Email (optional)</label>
-              {{ form.email }}
+              <input type="email" name="email" class="form-control" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default:'' }}">
               {% if form.email.errors %}
               <div class="text-danger mt-1">
                 {{ form.email.errors }}
@@ -51,20 +51,19 @@
           <!-- password field -->
           <div class="mb-3">
               <label for="{{ form.password1.id_for_label }}" class="form-label fw-bold">Password</label>
-              {{ form.password1 }}
+              <input type="password" name="password1" autocomplete="new-password" class="form-control" required id="{{ form.password1.id_for_label }}">
               {% if form.password1.errors %}
                 <div class="text-danger mt-1">
                   {{ form.password1.errors }}
                 </div>
               {% endif %}
-              <!-- password rules -->
               <div class="form-text">Your password must contain at least 8 characters and can't be entirely numeric.</div>
           </div>
                     
           <!-- confirm password (need to match first password) -->
           <div class="mb-4">
             <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">Confirm Password</label>
-            {{ form.password2 }}
+            <input type="password" name="password2" autocomplete="new-password" class="form-control" required id="{{ form.password2.id_for_label }}">
             {% if form.password2.errors %}
               <div class="text-danger mt-1">
                 {{ form.password2.errors }}

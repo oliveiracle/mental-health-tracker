@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -84,7 +84,7 @@ def mood_create(request):
 
 @login_required
 def mood_edit(request, pk):
-    mood = MoodEntry.objects.get(pk=pk, user=request.user)
+    mood = get_object_or_404(MoodEntry, pk=pk, user=request.user)
     if request.method == 'POST':
         form = MoodEntryForm(request.POST, instance=mood)
         if form.is_valid():
@@ -102,7 +102,7 @@ def mood_edit(request, pk):
 
 @login_required
 def mood_delete(request, pk):
-    mood = MoodEntry.objects.get(pk=pk, user=request.user)
+    mood = get_object_or_404(MoodEntry, pk=pk, user=request.user)
     if request.method == 'POST':
         mood.delete()
         messages.success(request, 'Mood deleted!')
@@ -169,5 +169,9 @@ def resource_list(request):
         'sections': sections,
     }
     return render(request, 'tracker/resources_list.html', context)
+
+
+def privacy(request):
+    return render(request, 'tracker/privacy.html')
 
 

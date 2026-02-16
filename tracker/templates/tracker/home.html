@@ -18,7 +18,7 @@
             <div class="feature-icon-container">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3 class="card-title">Track Your Progress</h3>
+            <h2 class="card-title">Track Your Progress</h2>
             <p class="card-text">Monitor your mood patterns over time and understand your emotional journey.</p>
           </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="feature-icon-container">
               <i class="fas fa-book"></i>
             </div>
-            <h3 class="card-title">Daily Journaling</h3>
+            <h2 class="card-title">Daily Journaling</h2>
             <p class="card-text">Add notes and reflect on what affects your wellbeing each day.</p>
           </div>
         </div>
@@ -43,19 +43,19 @@
   </div>
 
   <div class="col-md-4">
-    <a href="{% url 'home' %}" class="card-link" aria-label="Learn about privacy and security features">
-      <div class="card h-100 border-0 feature-card feature-card-3">
-        <div class="card-body text-center d-flex flex-column justify-content-between p-0">
-          <div>
-            <div class="feature-icon-container">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3 class="card-title">Private & Secure</h3>
-            <p class="card-text">Your data is linked to your account and protected by login. Only you can view, edit, or delete your entries. We never share your information without your consent.</p>
+    <div class="card h-100 border-0 feature-card feature-card-3">
+      <div class="card-body text-center d-flex flex-column justify-content-between p-0">
+        <div>
+          <div class="feature-icon-container">
+            <i class="fas fa-shield-alt"></i>
           </div>
+          <h2 class="card-title">Private & Secure</h2>
+          <p class="card-text">Your data is linked to your account and protected by login. Only you can view, edit, or delete your entries. We never share your information without your consent.</p>
         </div>
+        {# Button to access the privacy and data protection page #}
+        <a href="{% url 'privacy' %}" class="btn btn-outline-primary mt-3" aria-label="Learn more about privacy">Learn more</a>
       </div>
-    </a>
+    </div>
   </div>
 </div>
 {% endblock %}

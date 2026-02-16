@@ -104,7 +104,15 @@ USE_I18N = True
 # enable timezone support
 USE_TZ = True
 
-# url for static files (css, js, images)
+
+# CSRF trusted origins (for ngrok and external testing)
+import os
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=str)
+if CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS.split(',') if origin.strip()]
+else:
+    CSRF_TRUSTED_ORIGINS = []
+
 STATIC_URL = 'static/'
 
 # redirect to home page after login

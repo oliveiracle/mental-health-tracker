@@ -63,21 +63,24 @@ main .container {
     font-weight: bold;
     font-size: 1.1rem;
     background: linear-gradient(135deg, var(--primary-700) 0%, var(--accent-600) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
 .navbar-brand .brand-logo {
     width: 36px;
     height: 36px;
     margin-right: 10px;
 }
+
 .navbar-brand span {
     display: inline-flex;
     align-items: center;
-}
-    background-clip: text;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-    text-decoration: none;
 }
 
 .navbar-brand:hover {
@@ -1413,6 +1416,7 @@ footer p {
 .mood-list-page .table th,
 .mood-list-page .table td {
     white-space: normal;
+    overflow-wrap: break-word;
     word-break: break-word;
 }
 
