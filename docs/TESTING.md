@@ -123,6 +123,14 @@ Ran 46 tests in ~17s
 OK
 ```
 
+![Django test results - part 1](terminal-tests/test-results-1.png)
+![Django test results - part 2](terminal-tests/test-results-2.png)
+![Django test results - part 3](terminal-tests/test-results-3.png)
+
+### Coverage Report
+
+![Coverage report](coverage/coverage-report.png)
+
 ---
 
 ## Manual JavaScript Tests
@@ -132,6 +140,8 @@ The JavaScript in this project (`tracker/static/tracker/js/main.js`) handles UI 
 ### JS Validation
 
 The JavaScript file was validated using [JSHint](https://jshint.com/) with no major errors. The `/*jslint*/` and `/*global*/` directives at the top of `main.js` declare browser globals and enable strict mode.
+
+![JSHint validation](js_test/javascript-validation.png)
 
 ### Navbar Hover Effects
 
@@ -189,6 +199,32 @@ The JavaScript file was validated using [JSHint](https://jshint.com/) with no ma
 | Chrome | Latest | Pass |
 | Firefox | Latest | Pass |
 | Safari | Latest | Pass |
+
+---
+
+## Code Validation
+
+### HTML Validation (W3C)
+
+All HTML pages were validated using the [W3C Markup Validation Service](https://validator.w3.org/) with no errors.
+
+| Page | Screenshot | Result |
+|------|-----------|:------:|
+| base.html | ![base.html validation](html_tests/base.html-validation.png) | Pass |
+| home.html | ![home.html validation](html_tests/home.html-validation.png) | Pass |
+| login.html | ![login.html validation](html_tests/login.html-validation.png) | Pass |
+| register.html | ![register.html validation](html_tests/register.html-validation.png) | Pass |
+| mood_form.html | ![mood_form.html validation](html_tests/mood_form.html-validation.png) | Pass |
+| mood_list.html | ![mood_list.html validation](html_tests/mood_list.html-validation.png) | Pass |
+| mood_confirm.html | ![mood_confirm.html validation](html_tests/mood_confirm.html-validation.png) | Pass |
+| mood_trend.html | ![mood_trend.html validation](html_tests/mood_trend.html-validation.png) | Pass |
+| resources.html | ![resources.html validation](html_tests/resources.html-validation.png) | Pass |
+
+### CSS Validation (W3C)
+
+The CSS file was validated using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) with no errors.
+
+![CSS validation](css_test/css-validation.png)
 
 ---
 

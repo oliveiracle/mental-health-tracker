@@ -39,19 +39,15 @@ This project was built as Portfolio Project 4 for the Code Institute Full-Stack 
 
 ## User Stories
 
-| # | As a... | I want to... | So that... | Implemented |
-|---|---------|-------------|------------|:-----------:|
-| 1 | visitor | view the home page | I can understand what the app does | Yes |
-| 2 | visitor | register an account | I can start tracking my mood | Yes |
-| 3 | visitor | read the privacy policy | I know how my data is handled | Yes |
-| 4 | user | log in and log out | my data stays private | Yes |
-| 5 | user | create a mood entry | I can record how I feel today | Yes |
-| 6 | user | view my mood history | I can see all my past entries | Yes |
-| 7 | user | edit a mood entry | I can correct mistakes | Yes |
-| 8 | user | delete a mood entry | I can remove entries I no longer want | Yes |
-| 9 | user | see a weekly mood chart | I can spot trends in my wellbeing | Yes |
-| 10 | user | browse mental health resources | I can find helpful articles and links | Yes |
-| 11 | user | only see my own data | my entries are private from other users | Yes |
+User stories were tracked as [GitHub Issues](https://github.com/oliveiracle/mental-health-tracker/issues?q=is%3Aissue+is%3Aclosed) throughout development.
+
+| # | User Story | Status |
+|---|-----------|:------:|
+| [#1](https://github.com/oliveiracle/mental-health-tracker/issues/1) | User Registration and Authentication | Done |
+| [#2](https://github.com/oliveiracle/mental-health-tracker/issues/2) | Create Daily Mood Entry | Done |
+| [#3](https://github.com/oliveiracle/mental-health-tracker/issues/3) | View Mood History | Done |
+| [#4](https://github.com/oliveiracle/mental-health-tracker/issues/4) | Edit and Delete Mood Entries | Done |
+| [#5](https://github.com/oliveiracle/mental-health-tracker/issues/5) | Access Mental Health Resources | Done |
 
 ---
 
@@ -182,7 +178,11 @@ Full testing documentation is available in [docs/TESTING.md](docs/TESTING.md).
 
 - **46 automated Python tests** covering models, forms, views, and a full user-flow integration test
 - **19 manual JavaScript tests** covering hover effects, slider behaviour, character counter, Chart.js rendering, and responsiveness
-- **Validation**: HTML (W3C), CSS (W3C), JavaScript (JSHint) — all passing
+- **Validation**: HTML (W3C), CSS (W3C), JavaScript (JSHint) — all passing with screenshots in [TESTING.md](docs/TESTING.md)
+
+### Test Evidence
+
+![Django test results](docs/terminal-tests/test-results-3.png)
 
 ### Test Files
 
@@ -249,7 +249,7 @@ The application is deployed on **Heroku** using a PostgreSQL database.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mental-health-tracker.git
+   git clone https://github.com/oliveiracle/mental-health-tracker.git
    cd mental-health-tracker
    ```
 
