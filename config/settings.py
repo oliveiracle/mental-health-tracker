@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
+import dj_database_url
 
 # base directory of project
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
 # middleware for security and functionality
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,12 +74,12 @@ TEMPLATES = [
 # wsgi application for deployment
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# database configuration (using sqlite)
+# database configuration
+# Uses DATABASE_URL in production (PostgreSQL), falls back to SQLite locally
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # database type
-        'NAME': BASE_DIR / 'db.sqlite3',  # database file location
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    )
 }
 
 # password validation rules
@@ -106,7 +108,6 @@ USE_TZ = True
 
 
 # CSRF trusted origins (for ngrok and external testing)
-import os
 CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='', cast=str)
 if CSRF_TRUSTED_ORIGINS:
     CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in CSRF_TRUSTED_ORIGINS.split(',') if origin.strip()]
@@ -114,6 +115,7 @@ else:
     CSRF_TRUSTED_ORIGINS = []
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # redirect to home page after login
 LOGIN_REDIRECT_URL = 'home'
