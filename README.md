@@ -68,16 +68,34 @@ The commit history shows a clear progression from initial setup through models, 
 
 ### Colour Scheme
 
-The application uses a calming colour palette suited to a mental health context:
+![Colour Palette](docs/design/colour-palette.png)
 
-- **Primary**: Deep purple (`#6c63ff`) — used for the navbar, headings, and primary buttons
-- **Accent**: Softer purples and greens for interactive elements
-- **Background**: Light grey (`#f8f9fa`) for a clean, non-distracting feel
-- **Mood slider**: Gradient from red (low mood) through yellow to green (high mood)
+The colour palette was chosen deliberately to support the mental health context of the application:
+
+- **Navy Dark** (`#2C3F50`) — Primary colour for navbar and footer. Dark blues convey trust, stability and professionalism, helping users feel secure when sharing personal data.
+- **Slate Blue** (`#34495E`) — Used for headings and dark text. Provides strong readability while remaining softer than pure black, reducing visual strain.
+- **Steel Blue** (`#7793CC`) — Icon circles and accent elements. Lighter blues are associated with calm and serenity, encouraging a relaxed user experience.
+- **Muted Indigo** (`#6886BC`) — Hover states and icon variants. Adds subtle interactivity without overwhelming the user.
+- **Cloud Grey** (`#F3F4F8`) — Page background. A near-white tone that feels clean and open, reducing cognitive load.
+- **White** (`#FFFFFF`) — Card surfaces and navbar background. Creates clear visual separation between content sections.
+- **Cool Grey** (`#838E94`) — Body text and muted elements. Softer than black for comfortable reading over longer sessions.
+- **Light Silver** (`#E8E9EB`) — Borders and dividers. Provides structure without visual noise.
+- **Mood slider**: Gradient from red (low mood) through yellow to green (high mood), giving instant emotional feedback through colour psychology.
 
 ### Typography
 
-- System font stack (`-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif`) for fast loading and native feel across devices
+The application uses the system font stack:
+
+```
+-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif
+```
+
+This choice was intentional for several reasons:
+
+- **Performance**: No external font files to download, resulting in zero render-blocking requests and faster page loads.
+- **Familiarity**: Users see the native font of their operating system (San Francisco on macOS/iOS, Segoe UI on Windows, Roboto on Android), creating a sense of comfort and trust.
+- **Readability**: System fonts are optimised by each OS for screen rendering, ensuring clear text at all sizes — important for a wellness application where users may be reading during difficult moments.
+- **Accessibility**: System fonts respect user-configured font size and accessibility settings at the OS level.
 
 ### Design Decisions
 
