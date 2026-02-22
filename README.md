@@ -279,6 +279,15 @@ All HTML pages passed W3C validation with no errors. Full screenshots available 
 | mood_trends.html | Pass |
 | resources_list.html | Pass |
 
+### Lighthouse Audit (Mobile)
+
+| Category | Score | Screenshot |
+|----------|:-----:|-----------|
+| Performance | 92 | ![Performance](docs/lighthouse/lighthouse-performance-2.png) |
+| Accessibility | 94 | ![Accessibility](docs/lighthouse/lighthouse-accessibility.png) |
+| Best Practices | 77 | ![Best Practices](docs/lighthouse/lighthouse-best-practices.png) |
+| SEO | 90 | ![SEO](docs/lighthouse/lighthouse-seo.png) |
+
 ### Test Files
 
 | File | Tests | Coverage |
