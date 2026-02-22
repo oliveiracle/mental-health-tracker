@@ -283,10 +283,19 @@ All HTML pages passed W3C validation with no errors. Full screenshots available 
 
 | Category | Score | Screenshot |
 |----------|:-----:|-----------|
-| Performance | 92 | ![Performance](docs/lighthouse/lighthouse-performance-2.png) |
-| Accessibility | 94 | ![Accessibility](docs/lighthouse/lighthouse-accessibility.png) |
-| Best Practices | 77 | ![Best Practices](docs/lighthouse/lighthouse-best-practices.png) |
-| SEO | 90 | ![SEO](docs/lighthouse/lighthouse-seo.png) |
+| Performance | 92 | ![Performance](docs/lighthouse/mobile/lighthouse-mobile-performance.png) |
+| Accessibility | 94 | ![Accessibility](docs/lighthouse/mobile/lighthouse-mobile-accessibility.png) |
+| Best Practices | 77 | ![Best Practices](docs/lighthouse/mobile/lighthouse-mobile-best-practices.png) |
+| SEO | 90 | ![SEO](docs/lighthouse/mobile/lighthouse-mobile-seo.png) |
+
+### Lighthouse Audit (Desktop)
+
+| Category | Score | Screenshot |
+|----------|:-----:|-----------|
+| Performance | 100 | ![Performance](docs/lighthouse/desktop/lighthouse-desktop-performance.png) |
+| Accessibility | 94 | ![Accessibility](docs/lighthouse/desktop/lighthouse-desktop-accessibility.png) |
+| Best Practices | 77 | ![Best Practices](docs/lighthouse/desktop/lighthouse-desktop-best-practices.png) |
+| SEO | 90 | ![SEO](docs/lighthouse/desktop/lighthouse-desktop-seo.png) |
 
 ### Test Files
 
