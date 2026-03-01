@@ -4,6 +4,12 @@ A full-stack web application built with Django that helps users track their dail
 
 **Live site:** [https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/](https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/)
 
+**Test account:**
+| Role | Username | Password |
+|---|---|---|
+| Regular user | testuser | TestPass123! |
+| Admin | admin | AdminPass123! |
+
 ![App screenshot](docs/images/app-screenshot.png)
 
 ---
