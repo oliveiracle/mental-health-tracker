@@ -478,19 +478,6 @@ The application follows security best practices:
 - Bootstrap 5 components from [Bootstrap documentation](https://getbootstrap.com/docs/5.3/)
 - Pagination pattern from [Django documentation on pagination](https://docs.djangoproject.com/en/6.0/topics/pagination/)
 
-### Content
-
-- Mental health resources were curated from publicly available sources including NHS, Mind, and ADHD Foundation
-- Privacy policy text was written specifically for this project
-- All text content was written by the developer
-
-### Code
-
-- Django authentication system based on [Django documentation](https://docs.djangoproject.com/en/6.0/topics/auth/)
-- Chart.js implementation guided by [Chart.js documentation](https://www.chartjs.org/docs/)
-- Bootstrap 5 components from [Bootstrap documentation](https://getbootstrap.com/docs/5.3/)
-- Pagination pattern from [Django documentation on pagination](https://docs.djangoproject.com/en/6.0/topics/pagination/)
-
 ### Media
 
 - Icons from [Font Awesome](https://fontawesome.com/) (free tier)
