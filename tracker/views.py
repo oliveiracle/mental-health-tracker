@@ -187,3 +187,13 @@ def resource_list(request):
 def privacy(request):
     """Display the privacy policy page."""
     return render(request, 'tracker/privacy.html')
+
+
+def handler404(request, exception):
+    """Render custom 404 page."""
+    return render(request, '404.html', status=404)
+
+
+def handler500(request):
+    """Render custom 500 page."""
+    return render(request, '500.html', status=500)

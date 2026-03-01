@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.utils import timezone
+from datetime import timedelta
 from tracker.models import MoodEntry, Resource
 
 
@@ -35,8 +37,8 @@ class MoodEntryModelTest(TestCase):
 		# test that moods are ordered by date descending
 		mood1 = MoodEntry.objects.create(user=self.user, mood_score=3)
 		mood2 = MoodEntry.objects.create(user=self.user, mood_score=8)
-		# ensure different dates for deterministic ordering
-		mood1.date = mood1.date.replace(day=mood1.date.day - 1)
+		# set mood1 to yesterday using timedelta to avoid day=0 errors
+		mood1.date = mood1.date - timedelta(days=1)
 		mood1.save(update_fields=['date'])
 		moods = MoodEntry.objects.all()
 		# newest should be first

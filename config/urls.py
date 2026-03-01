@@ -9,3 +9,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('', include('tracker.urls')),  # include tracker app urls
 ]
+
+# custom error page handlers
+handler404 = 'tracker.views.handler404'
+handler500 = 'tracker.views.handler500'

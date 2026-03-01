@@ -121,3 +121,12 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 LOGIN_REDIRECT_URL = 'home'
 # redirect to home page after logout
 LOGOUT_REDIRECT_URL = 'home'
+
+# production security settings
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    X_FRAME_OPTIONS = 'DENY'
