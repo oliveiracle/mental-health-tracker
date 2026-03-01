@@ -1,6 +1,3 @@
-"""
-Forms for user registration and mood entry, with Bootstrap styling and helpful comments.
-"""
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -8,10 +5,6 @@ from .models import MoodEntry
 
 
 class RegisterForm(UserCreationForm):
-    """
-    Custom user registration form extending Django's UserCreationForm.
-    Adds an email field and applies Bootstrap classes for styling.
-    """
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -31,10 +24,6 @@ class RegisterForm(UserCreationForm):
 
 
 class MoodEntryForm(forms.ModelForm):
-    """
-    Form for creating or editing a MoodEntry.
-    Uses a range slider for mood_score and a textarea for notes, both styled with Bootstrap.
-    """
     mood_score = forms.IntegerField(
         min_value=0,
         max_value=10,

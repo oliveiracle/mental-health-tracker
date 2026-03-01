@@ -1,13 +1,7 @@
-"""
-Models for database tables: MoodEntry (user mood tracking) and Resource (helpful resources).
-"""
 from django.db import models
 from django.contrib.auth.models import User
 
 class MoodEntry(models.Model):
-    """
-    Stores a single mood entry for a user, including mood score, notes, and timestamps.
-    """
     # Choices for mood score (0 to 10)
     MOOD_CHOICES = [
         (0, 'Very Low'),
@@ -39,14 +33,10 @@ class MoodEntry(models.Model):
         verbose_name_plural = 'Mood Entries'
 
     def __str__(self):
-        """String representation for admin panel and debugging."""
         return f"{self.user.username} - {self.date} - Score: {self.mood_score}"
 
 
 class Resource(models.Model):
-    """
-    Stores a resource (article, link, etc.) for mental health support.
-    """
     CATEGORY_CHOICES = [
         ("adhd", "ADHD"),
         ("depression", "Depression"),
@@ -66,5 +56,4 @@ class Resource(models.Model):
         verbose_name_plural = "Resources"
 
     def __str__(self):
-        """String representation for admin panel and debugging."""
         return self.title

@@ -1,7 +1,3 @@
-"""
-Views for the tracker app: handles pages, user registration,
-mood CRUD operations, trends chart, and resource listing.
-"""
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -15,12 +11,10 @@ from .models import MoodEntry, Resource
 
 
 def home(request):
-    """Display the home page."""
     return render(request, 'tracker/home.html')
 
 
 def register(request):
-    """Handle user registration with email, username and password."""
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -47,7 +41,6 @@ def register(request):
 
 
 def logout_view(request):
-    """Log the user out and redirect to home."""
     logout(request)
     messages.success(request, 'You have been logged out.')
     return redirect('home')
@@ -55,7 +48,6 @@ def logout_view(request):
 
 @login_required
 def mood_list(request):
-    """Show the logged-in user's mood entries, paginated 10 per page."""
     all_moods = MoodEntry.objects.filter(user=request.user)
 
     paginator = Paginator(all_moods, 10)
@@ -67,7 +59,6 @@ def mood_list(request):
 
 @login_required
 def mood_create(request):
-    """Create a new mood entry for the logged-in user."""
     if request.method == 'POST':
         form = MoodEntryForm(request.POST)
         if form.is_valid():
@@ -93,7 +84,6 @@ def mood_create(request):
 
 @login_required
 def mood_edit(request, pk):
-    """Edit an existing mood entry. Only the owner can edit."""
     mood = get_object_or_404(MoodEntry, pk=pk, user=request.user)
     if request.method == 'POST':
         form = MoodEntryForm(request.POST, instance=mood)
@@ -112,7 +102,6 @@ def mood_edit(request, pk):
 
 @login_required
 def mood_delete(request, pk):
-    """Delete a mood entry. Only the owner can delete."""
     mood = get_object_or_404(MoodEntry, pk=pk, user=request.user)
     if request.method == 'POST':
         mood.delete()
@@ -123,7 +112,6 @@ def mood_delete(request, pk):
 
 @login_required
 def mood_trends(request):
-    """Show a 7-day mood chart with average, max and min scores."""
     today = timezone.localdate()
     start_date = today - timedelta(days=6)
     days = [start_date + timedelta(days=offset) for offset in range(7)]
@@ -161,7 +149,6 @@ def mood_trends(request):
 
 @login_required
 def resource_list(request):
-    """Show mental health resources grouped by category."""
     categories = Resource.CATEGORY_CHOICES
     resources = Resource.objects.all().order_by('category', 'title')
     grouped_resources = {key: [] for key, _ in categories}
@@ -185,15 +172,12 @@ def resource_list(request):
 
 
 def privacy(request):
-    """Display the privacy policy page."""
     return render(request, 'tracker/privacy.html')
 
 
 def handler404(request, exception):
-    """Render custom 404 page."""
     return render(request, '404.html', status=404)
 
 
 def handler500(request):
-    """Render custom 500 page."""
     return render(request, '500.html', status=500)
