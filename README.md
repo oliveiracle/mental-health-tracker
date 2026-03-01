@@ -2,7 +2,7 @@
 
 A full-stack web application built with Django that helps users track their daily mood, visualise emotional trends over time, and access curated mental health resources. Designed as a personal wellness tool with full CRUD functionality and user authentication.
 
-**Live site:** *Deployment in progress*
+**Live site:** _Deployment in progress_
 
 ![App screenshot](docs/images/app-screenshot.png)
 
@@ -54,13 +54,13 @@ The commit history shows a clear progression from initial setup through models, 
 
 ## User Stories
 
-| # | User Story | Acceptance Criteria | Status |
-|---|-----------|-------------------|:------:|
-| [#1](https://github.com/oliveiracle/mental-health-tracker/issues/1) | As a visitor, I want to register an account so that I can start tracking my mood | User can register with username, email and password; is logged in automatically after registration | Done |
-| [#2](https://github.com/oliveiracle/mental-health-tracker/issues/2) | As a user, I want to create a daily mood entry so that I can record how I feel | User can log a mood score (0-10) with optional notes; entry is saved to their account | Done |
-| [#3](https://github.com/oliveiracle/mental-health-tracker/issues/3) | As a user, I want to view my mood history so that I can see all my past entries | User sees a paginated list of their mood entries, newest first | Done |
-| [#4](https://github.com/oliveiracle/mental-health-tracker/issues/4) | As a user, I want to edit and delete mood entries so that I can correct or remove them | User can update or delete their own entries; cannot access other users' data | Done |
-| [#5](https://github.com/oliveiracle/mental-health-tracker/issues/5) | As a user, I want to access mental health resources so that I can find helpful information | User sees resources grouped by category (ADHD, Depression, Anxiety, General) | Done |
+| #                                                                   | User Story                                                                                 | Acceptance Criteria                                                                                | Status |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- | :----: |
+| [#1](https://github.com/oliveiracle/mental-health-tracker/issues/1) | As a visitor, I want to register an account so that I can start tracking my mood           | User can register with username, email and password; is logged in automatically after registration |  Done  |
+| [#2](https://github.com/oliveiracle/mental-health-tracker/issues/2) | As a user, I want to create a daily mood entry so that I can record how I feel             | User can log a mood score (0-10) with optional notes; entry is saved to their account              |  Done  |
+| [#3](https://github.com/oliveiracle/mental-health-tracker/issues/3) | As a user, I want to view my mood history so that I can see all my past entries            | User sees a paginated list of their mood entries, newest first                                     |  Done  |
+| [#4](https://github.com/oliveiracle/mental-health-tracker/issues/4) | As a user, I want to edit and delete mood entries so that I can correct or remove them     | User can update or delete their own entries; cannot access other users' data                       |  Done  |
+| [#5](https://github.com/oliveiracle/mental-health-tracker/issues/5) | As a user, I want to access mental health resources so that I can find helpful information | User sees resources grouped by category (ADHD, Depression, Anxiety, General)                       |  Done  |
 
 ---
 
@@ -112,16 +112,27 @@ Wireframes were created during the planning phase to guide the layout and user f
 
 ### Desktop
 
-| Page | Wireframe |
-|------|-----------|
-| Home | ![Home wireframe](docs/wireframes/desktop/wireframe_mental_health.png) |
-| Sign Up | ![Sign Up wireframe](docs/wireframes/desktop/wireframe_signup.png) |
-| Login | ![Login wireframe](docs/wireframes/desktop/wireframe_login.png) |
-| Mood List | ![Mood List wireframe](docs/wireframes/desktop/wireframe_moods.png) |
-| Add Mood | ![Add Mood wireframe](docs/wireframes/desktop/wireframe_add_mood.png) |
+| Page        | Wireframe                                                                   |
+| ----------- | --------------------------------------------------------------------------- |
+| Home        | ![Home wireframe](docs/wireframes/desktop/wireframe_mental_health.png)      |
+| Sign Up     | ![Sign Up wireframe](docs/wireframes/desktop/wireframe_signup.png)          |
+| Login       | ![Login wireframe](docs/wireframes/desktop/wireframe_login.png)             |
+| Mood List   | ![Mood List wireframe](docs/wireframes/desktop/wireframe_moods.png)         |
+| Add Mood    | ![Add Mood wireframe](docs/wireframes/desktop/wireframe_add_mood.png)       |
 | Delete Mood | ![Delete Mood wireframe](docs/wireframes/desktop/wireframe_delete_mood.png) |
-| Mood Trends | ![Mood Trends wireframe](docs/wireframes/desktop/wireframe_trends.png) |
-| Resources | ![Resources wireframe](docs/wireframes/desktop/wireframe_resources.png) |
+| Mood Trends | ![Mood Trends wireframe](docs/wireframes/desktop/wireframe_trends.png)      |
+| Resources   | ![Resources wireframe](docs/wireframes/desktop/wireframe_resources.png)     |
+
+### Mobile
+
+| Page        | Wireframe                                                                         |
+| ----------- | --------------------------------------------------------------------------------- |
+| Home        | ![Home wireframe](docs/wireframes/mobile/wireframe-mobile-homepage.png)           |
+| Sign Up     | ![Sign Up wireframe](docs/wireframes/mobile/wireframe-mobile-signup.png)          |
+| Mood List   | ![Mood List wireframe](docs/wireframes/mobile/wireframe-mobile-mood-entries.png)  |
+| Add Mood    | ![Add Mood wireframe](docs/wireframes/mobile/wireframe-mobile-add-mood-entry.png) |
+| Mood Trends | ![Mood Trends wireframe](docs/wireframes/mobile/wireframe-mobile-mood-trends.png) |
+| Resources   | ![Resources wireframe](docs/wireframes/mobile/wireframe-mobile-resources.png)     |
 
 ---
 
@@ -160,6 +171,7 @@ The application uses two custom models backed by PostgreSQL (production) or SQLi
 ```
 
 **Relationships:**
+
 - Each `User` can have many `MoodEntry` records (one-to-many)
 - `Resource` is a standalone model managed through the Django admin panel
 - When a `User` is deleted, all associated `MoodEntry` records are also deleted (`CASCADE`)
@@ -169,17 +181,20 @@ The application uses two custom models backed by PostgreSQL (production) or SQLi
 ## Features
 
 ### Home Page
+
 - Welcome message explaining the app's purpose
 - Three feature cards linking to mood tracking, daily journaling, and privacy info
 - Responsive layout using Bootstrap 5 grid
 
 ### User Authentication
+
 - Custom registration form with email, username, and password
 - Django's built-in authentication for login/logout
 - Success messages on registration, login, and logout
 - `@login_required` decorator protects all mood and resource pages
 
 ### Mood Tracking (Full CRUD)
+
 - **Create**: Log a mood score (0-10) using a colour-changing slider and optional notes with a character counter
 - **Read**: View all past entries in a paginated list (10 per page)
 - **Update**: Edit any of your own entries
@@ -187,24 +202,29 @@ The application uses two custom models backed by PostgreSQL (production) or SQLi
 - Users can only access their own entries — attempting to view, edit, or delete another user's entry returns a 404
 
 ### Mood Trends
+
 - Weekly line chart built with Chart.js showing average daily mood scores
 - Summary statistics: weekly average, highest score, lowest score
 - Chart loads asynchronously from CDN and handles load failures gracefully
 
 ### Resource Library
+
 - Curated links grouped into four categories: ADHD, Depression, Anxiety, General
 - Resources are managed through the Django admin panel
 - Each resource has a title, description, and external link
 
 ### Privacy Page
+
 - Accessible to all visitors (no login required)
 - Explains data handling and user rights
 
 ### Custom Error Pages
+
 - Custom 404 page with navigation back to home
 - Custom 500 page for server errors
 
 ### Responsive Design
+
 - Fully responsive across mobile (375px), tablet (768px), and desktop (1200px+)
 - Bootstrap 5 grid with collapsible navbar on smaller screens
 - Hover effects on cards and buttons using vanilla JavaScript
@@ -225,12 +245,14 @@ The application uses two custom models backed by PostgreSQL (production) or SQLi
 ## Technologies Used
 
 ### Languages
+
 - Python 3.14
 - HTML5
 - CSS3
 - JavaScript (ES6)
 
 ### Frameworks and Libraries
+
 - **Django 6.0.1** — web framework
 - **Bootstrap 5** — responsive UI components
 - **Chart.js** — mood trends line chart
@@ -244,6 +266,7 @@ The application uses two custom models backed by PostgreSQL (production) or SQLi
 - **coverage** — test coverage reporting
 
 ### Tools
+
 - **Git** — version control
 - **GitHub** — repository hosting and issue tracking
 - **Heroku** — cloud deployment
@@ -285,44 +308,44 @@ Full testing documentation is available in [docs/TESTING.md](docs/TESTING.md).
 
 All HTML pages passed W3C validation with no errors. Full screenshots available in [TESTING.md](docs/TESTING.md).
 
-| Page | Result |
-|------|:------:|
-| base.html | Pass |
-| home.html | Pass |
-| login.html | Pass |
-| register.html | Pass |
-| mood_form.html | Pass |
-| mood_list.html | Pass |
-| mood_confirm_delete.html | Pass |
-| mood_trends.html | Pass |
-| resources_list.html | Pass |
+| Page                     | Result |
+| ------------------------ | :----: |
+| base.html                |  Pass  |
+| home.html                |  Pass  |
+| login.html               |  Pass  |
+| register.html            |  Pass  |
+| mood_form.html           |  Pass  |
+| mood_list.html           |  Pass  |
+| mood_confirm_delete.html |  Pass  |
+| mood_trends.html         |  Pass  |
+| resources_list.html      |  Pass  |
 
 ### Lighthouse Audit (Mobile)
 
-| Category | Score | Screenshot |
-|----------|:-----:|-----------|
-| Performance | 92 | ![Performance](docs/lighthouse/mobile/lighthouse-mobile-performance.png) |
-| Accessibility | 94 | ![Accessibility](docs/lighthouse/mobile/lighthouse-mobile-accessibility.png) |
-| Best Practices | 77 | ![Best Practices](docs/lighthouse/mobile/lighthouse-mobile-best-practices.png) |
-| SEO | 90 | ![SEO](docs/lighthouse/mobile/lighthouse-mobile-seo.png) |
+| Category       | Score | Screenshot                                                                     |
+| -------------- | :---: | ------------------------------------------------------------------------------ |
+| Performance    |  92   | ![Performance](docs/lighthouse/mobile/lighthouse-mobile-performance.png)       |
+| Accessibility  |  94   | ![Accessibility](docs/lighthouse/mobile/lighthouse-mobile-accessibility.png)   |
+| Best Practices |  77   | ![Best Practices](docs/lighthouse/mobile/lighthouse-mobile-best-practices.png) |
+| SEO            |  90   | ![SEO](docs/lighthouse/mobile/lighthouse-mobile-seo.png)                       |
 
 ### Lighthouse Audit (Desktop)
 
-| Category | Score | Screenshot |
-|----------|:-----:|-----------|
-| Performance | 100 | ![Performance](docs/lighthouse/desktop/lighthouse-desktop-performance.png) |
-| Accessibility | 94 | ![Accessibility](docs/lighthouse/desktop/lighthouse-desktop-accessibility.png) |
-| Best Practices | 77 | ![Best Practices](docs/lighthouse/desktop/lighthouse-desktop-best-practices.png) |
-| SEO | 90 | ![SEO](docs/lighthouse/desktop/lighthouse-desktop-seo.png) |
+| Category       | Score | Screenshot                                                                       |
+| -------------- | :---: | -------------------------------------------------------------------------------- |
+| Performance    |  100  | ![Performance](docs/lighthouse/desktop/lighthouse-desktop-performance.png)       |
+| Accessibility  |  94   | ![Accessibility](docs/lighthouse/desktop/lighthouse-desktop-accessibility.png)   |
+| Best Practices |  77   | ![Best Practices](docs/lighthouse/desktop/lighthouse-desktop-best-practices.png) |
+| SEO            |  90   | ![SEO](docs/lighthouse/desktop/lighthouse-desktop-seo.png)                       |
 
 ### Test Files
 
-| File | Tests | Coverage |
-|------|:-----:|----------|
-| `tracker/test_models.py` | 5 | MoodEntry and Resource model behaviour |
-| `tracker/test_forms.py` | 8 | RegisterForm and MoodEntryForm validation |
-| `tracker/test_views.py` | 32 | All views: auth, CRUD, permissions, pagination, 404s |
-| `tracker/tests_user_flow.py` | 1 | Full user journey: login → create → view → edit → delete |
+| File                         | Tests | Coverage                                                 |
+| ---------------------------- | :---: | -------------------------------------------------------- |
+| `tracker/test_models.py`     |   5   | MoodEntry and Resource model behaviour                   |
+| `tracker/test_forms.py`      |   8   | RegisterForm and MoodEntryForm validation                |
+| `tracker/test_views.py`      |  32   | All views: auth, CRUD, permissions, pagination, 404s     |
+| `tracker/tests_user_flow.py` |   1   | Full user journey: login → create → view → edit → delete |
 
 ### Running Tests
 
@@ -345,16 +368,19 @@ The application is deployed on **Heroku** using a PostgreSQL database.
 ### Heroku Deployment Steps
 
 1. **Create a Heroku app**
+
    ```bash
    heroku create your-app-name
    ```
 
 2. **Add PostgreSQL**
+
    ```bash
    heroku addons:create heroku-postgresql:essential-0
    ```
 
 3. **Set environment variables**
+
    ```bash
    heroku config:set SECRET_KEY="your-secret-key"
    heroku config:set DEBUG=False
@@ -362,11 +388,13 @@ The application is deployed on **Heroku** using a PostgreSQL database.
    ```
 
 4. **Deploy**
+
    ```bash
    git push heroku main
    ```
 
 5. **Run migrations**
+
    ```bash
    heroku run python manage.py migrate
    ```
@@ -381,23 +409,27 @@ The application is deployed on **Heroku** using a PostgreSQL database.
 To run this project locally:
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/oliveiracle/mental-health-tracker.git
    cd mental-health-tracker
    ```
 
 2. Create and activate a virtual environment:
+
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 3. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. Create a `.env` file in the project root:
+
    ```
    SECRET_KEY=your-secret-key-here
    DEBUG=True
@@ -405,6 +437,7 @@ To run this project locally:
    ```
 
 5. Run migrations and start the server:
+
    ```bash
    python manage.py migrate
    python manage.py runserver
@@ -433,21 +466,44 @@ The application follows security best practices:
 ## Credits
 
 ### Content
+
 - Mental health resources were curated from publicly available sources including NHS, Mind, and ADHD Foundation
 - Privacy policy text was written specifically for this project
 - All text content was written by the developer
 
 ### Code
+
+- Django authentication system based on [Django documentation](https://docs.djangoproject.com/en/6.0/topics/auth/)
+- Chart.js implementation guided by [Chart.js documentation](https://www.chartjs.org/docs/)
+- Bootstrap 5 components from [Bootstrap documentation](https://getbootstrap.com/docs/5.3/)
+- Pagination pattern from [Django documentation on pagination](https://docs.djangoproject.com/en/6.0/topics/pagination/)
+
+### Content
+
+- Mental health resources were curated from publicly available sources including NHS, Mind, and ADHD Foundation
+- Privacy policy text was written specifically for this project
+- All text content was written by the developer
+
+### Code
+
 - Django authentication system based on [Django documentation](https://docs.djangoproject.com/en/6.0/topics/auth/)
 - Chart.js implementation guided by [Chart.js documentation](https://www.chartjs.org/docs/)
 - Bootstrap 5 components from [Bootstrap documentation](https://getbootstrap.com/docs/5.3/)
 - Pagination pattern from [Django documentation on pagination](https://docs.djangoproject.com/en/6.0/topics/pagination/)
 
 ### Media
+
 - Icons from [Font Awesome](https://fontawesome.com/) (free tier)
 - No external images used — all visual elements are CSS/icon-based
 
+### AI Tools
+
+- GitHub Copilot (OpenAI/Microsoft) — Used for code suggestions, refactoring, and productivity improvements throughout the project. All code was reviewed and validated by the developer.
+- Claude Code (Anthropic) — AI coding assistant used throughout development for debugging, writing and reviewing automated tests, improving code quality, and project consulting. All code was understood, reviewed, and verified by the developer.
+- Claude (Anthropic) — Used to generate wireframe designs for both desktop and mobile layouts, and to create the colour palette image.
+
 ### Acknowledgements
+
 - Code Institute for the project brief, learning materials, and assessment criteria
 - The Django, Bootstrap, and Chart.js open-source communities
 - Stack Overflow for troubleshooting specific Django issues during development

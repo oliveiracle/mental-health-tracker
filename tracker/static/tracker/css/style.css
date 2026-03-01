@@ -474,9 +474,17 @@ main .container {
 }
 
 .btn-primary-action i {
-    margin-right: 6px;
-}
+        padding: 1.1rem 2.2rem;
+        font-size: 1.15rem;
+        min-width: 90vw;
+        display: block;
+        margin: 1.2rem auto 0 auto;
+        border-radius: 32px;
 
+    .btn-sm.btn-primary-action {
+        padding: 0.9rem 1.5rem;
+        font-size: 1rem;
+        min-width: 80vw;
 /* Empty state alert */
 .empty-state-alert {
     background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
@@ -1430,6 +1438,12 @@ footer p {
     .mood-list-page .table th:nth-child(4),
     .mood-list-page .table td:nth-child(4) {
         display: none;
+    }
+
+    .btn-sm.btn-primary-action,
+    .btn-sm.btn-secondary-action {
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8rem;
     }
 }
 
