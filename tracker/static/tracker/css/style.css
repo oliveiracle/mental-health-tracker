@@ -474,17 +474,9 @@ main .container {
 }
 
 .btn-primary-action i {
-        padding: 1.1rem 2.2rem;
-        font-size: 1.15rem;
-        min-width: 90vw;
-        display: block;
-        margin: 1.2rem auto 0 auto;
-        border-radius: 32px;
+    margin-right: 6px;
+}
 
-    .btn-sm.btn-primary-action {
-        padding: 0.9rem 1.5rem;
-        font-size: 1rem;
-        min-width: 80vw;
 /* Empty state alert */
 .empty-state-alert {
     background: linear-gradient(135deg, #e1f5fe 0%, #f3e5f5 100%);
