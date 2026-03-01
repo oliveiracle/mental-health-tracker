@@ -2,7 +2,7 @@
 
 A full-stack web application built with Django that helps users track their daily mood, visualise emotional trends over time, and access curated mental health resources. Designed as a personal wellness tool with full CRUD functionality and user authentication.
 
-**Live site:** _Deployment in progress_
+**Live site:** [https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/](https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/)
 
 ![App screenshot](docs/images/app-screenshot.png)
 
