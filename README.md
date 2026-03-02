@@ -1,6 +1,14 @@
 # Mental Health Tracker
 
-A full-stack web application built with Django that helps users track their daily mood, visualise emotional trends over time, and access curated mental health resources. Designed as a personal wellness tool with full CRUD functionality and user authentication.
+![Python](https://img.shields.io/badge/Python-3.14-3776AB?style=flat&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-6.0.1-092E20?style=flat&logo=django&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Production-336791?style=flat&logo=postgresql&logoColor=white)
+![Heroku](https://img.shields.io/badge/Deployed-Heroku-430098?style=flat&logo=heroku&logoColor=white)
+![Coverage](https://img.shields.io/badge/Coverage-98%25-brightgreen?style=flat)
+![Tests](https://img.shields.io/badge/Tests-46%20passing-brightgreen?style=flat)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=flat&logo=bootstrap&logoColor=white)
+
+> A full-stack wellness app to track daily mood, visualise weekly trends, and access curated mental health resources — built with Django and PostgreSQL.
 
 **Live site:** [https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/](https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/)
 
