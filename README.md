@@ -54,6 +54,11 @@ This project was developed using Agile principles. User stories were created as 
 
 Each user story included acceptance criteria and was moved through the workflow: **To Do → In Progress → Done**. Features were built incrementally, with regular commits reflecting each piece of functionality as it was completed.
 
+User stories were prioritised using the **MoSCoW method**:
+- **Must Have** — core features required for the app to function (#1 Authentication, #2 Create Entry, #3 View History, #4 Edit/Delete)
+- **Should Have** — important but not critical (#5 Resource Library)
+- **Could Have** — future enhancements (monthly trends, CSV export, email reminders)
+
 The commit history shows a clear progression from initial setup through models, views, templates, testing, and final documentation.
 
 ---
