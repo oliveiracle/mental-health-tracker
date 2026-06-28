@@ -10,7 +10,7 @@
 
 > A full-stack wellness app to track daily mood, visualise weekly trends, and access curated mental health resources — built with Django and PostgreSQL.
 
-**Live site:** [https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/](https://mental-health-tracker-cleino-e2c27d0f57d7.herokuapp.com/)
+**Live site:** https://mental-health-tracker-cleino-62be7a5dd84c.herokuapp.com/
 
 **Test account:**
 | Role | Username | Password |
